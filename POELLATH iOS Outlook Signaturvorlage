@@ -511,6 +511,16 @@
     function normalizeEmailPart(value) {
       return value.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9-]+/g, '').replace(/^-+|-+$/g, '');
     }
+    function normalizeMobileNumber(value) {
+      let digits = value.replace(/\D/g, '');
+      if (digits.startsWith('0049')) digits = digits.slice(4);
+      else if (digits.startsWith('49')) digits = digits.slice(2);
+      if (digits.startsWith('0')) digits = digits.slice(1);
+      if (!digits) return '';
+      const areaCode = digits.slice(0, 3);
+      const subscriberNumber = digits.slice(3);
+      return 'T +49 ' + areaCode + (subscriberNumber ? ' ' + subscriberNumber : '');
+    }
     function suggestEmailAddress() {
       if (emailWasEdited && emailInput.value !== lastSuggestedEmail && emailInput.value !== '@pplaw.com') return;
       const firstTokens = getValue('firstName').split(/\s+/).filter(Boolean);
@@ -549,12 +559,12 @@
       const firstName = getValue('firstName');
       const lastName = getValue('lastName');
       const titleSuffix = getValue('titleSuffix');
-      const mobile = getValue('mobile');
+      const mobile = normalizeMobileNumber(getValue('mobile'));
       const fullName = [title, firstName, lastName].filter(Boolean).join(' ') + (titleSuffix ? ', ' + titleSuffix : '');
       return '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>'
-        + '<td style="padding:0 12px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-weight:bold;">+</td>'
+        + '<td style="padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:12pt; font-weight:bold;">+</td>'
         + '<td style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif;">'
-        + '<span style="font-family:Arial, Helvetica, sans-serif; font-weight:bold; color:#7D7F87;">' + escapeHtml(fullName) + '</span>'
+        + '<span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; font-weight:bold; color:#7D7F87;">' + escapeHtml(fullName) + '</span>'
         + (mobile ? '<hr style="width:50px; height:2px; margin:5px 0; padding:0; border:0; background-color:#4DB4F2; color:#4DB4F2; text-align:left;"><span style="font-family:Arial, Helvetica, sans-serif; color:#7D7F87;">' + escapeHtml(mobile) + '</span>' : '')
         + '</td>'
         + '</tr></table>';
