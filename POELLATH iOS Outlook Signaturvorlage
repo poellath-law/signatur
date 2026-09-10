@@ -214,7 +214,13 @@
       background: var(--page);
     }
 
-    #signature {
+    .preview-column {
+      display: grid;
+      gap: 20px;
+    }
+
+    #signature,
+    #shortSignature {
       display: inline-block;
       min-width: 300px;
       padding: 12px;
@@ -387,6 +393,10 @@
             <input id="extension" name="extension" type="tel" inputmode="tel" placeholder="123">
           </div>
           <div class="field">
+            <label for="mobile">Handynummer</label>
+            <input id="mobile" name="mobile" type="tel" inputmode="tel" placeholder="+49 171 1234567">
+          </div>
+          <div class="field">
             <label for="email">E-Mail-Adresse</label>
             <input id="email" name="email" type="email" value="@pplaw.com" placeholder="vorname.nachname@pplaw.com">
           </div>
@@ -416,10 +426,11 @@
         <div class="status" id="status" role="status" aria-live="polite"></div>
       </form>
 
-      <section class="card">
-        <h2>Fertige Signatur</h2>
-        <div class="signature-wrap">
-          <div id="signature">
+      <div class="preview-column">
+        <section class="card">
+          <h2>Fertige Signatur</h2>
+          <div class="signature-wrap">
+            <div id="signature">
             <div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">
               Dr. Alex Mustermensch, LL.M.<br>
               Rechtsanwalt<br>
@@ -430,8 +441,19 @@
               <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Hofstatt 1<br>80331 München<br>T +49 89 24240 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
             </div>
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Kurzsignatur</h2>
+          <div class="signature-wrap">
+            <div id="shortSignature"></div>
+          </div>
+          <div class="actions">
+            <button class="secondary" type="button" id="selectCopyShortButton">Kurzsignatur kopieren</button>
+          </div>
+        </section>
+      </div>
     </section>
   </main>
 
@@ -454,9 +476,10 @@
     };
     const jobTitleSelect = document.getElementById('jobTitle');
     const jobTitleFreetextField = document.getElementById('jobTitleFreetextField');
-    const fields = ['title', 'firstName', 'lastName', 'titleSuffix', 'jobTitle', 'jobTitleFreetext', 'position', 'extension', 'email', 'linkedin', 'language', 'location'];
+    const fields = ['title', 'firstName', 'lastName', 'titleSuffix', 'jobTitle', 'jobTitleFreetext', 'position', 'extension', 'mobile', 'email', 'linkedin', 'language', 'location'];
     const form = document.getElementById('signatureForm');
     const signature = document.getElementById('signature');
+    const shortSignature = document.getElementById('shortSignature');
     const statusEl = document.getElementById('status');
     const emailInput = document.getElementById('email');
     let emailWasEdited = false;
@@ -521,19 +544,41 @@
         + escapeHtml(newsletterPretext) + '<a href="' + newsletterHref + '" style="color:#9C9EA6; text-decoration:underline;">' + escapeHtml(newsletterText) + '</a><br><br>POELLATH<br><span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>'
         + escapeHtml(addressLines[0]) + '<br>' + escapeHtml(addressLines[1]) + '<br>T ' + escapeHtml(phone) + '<br>' + emailHtml + personalLinkedIn + '<br><a href="' + websiteHref + '" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="' + companyLinkedInUrl + '" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span></div>';
     }
-    function updateSignature(showMessage) { signature.innerHTML = buildSignatureHtml(); if (showMessage) setStatus('Signatur wurde aktualisiert.', false); }
-    async function selectAndCopySignature() {
-      updateSignature(false);
-      const range = document.createRange(); range.selectNodeContents(signature);
+    function buildShortSignatureHtml() {
+      const firstName = getValue('firstName');
+      const lastName = getValue('lastName');
+      const titleSuffix = getValue('titleSuffix');
+      const mobile = getValue('mobile');
+      const fullName = [firstName, lastName].filter(Boolean).join(' ') + (titleSuffix ? ', ' + titleSuffix : '');
+      return '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>'
+        + '<td style="padding:0 12px 0 0; vertical-align:top;">+</td>'
+        + '<td style="padding:0; vertical-align:top;">' + escapeHtml(fullName) + (mobile ? '<br>' + escapeHtml(mobile) : '') + '</td>'
+        + '</tr></table>';
+    }
+    function updateSignature(showMessage) {
+      signature.innerHTML = buildSignatureHtml();
+      shortSignature.innerHTML = buildShortSignatureHtml();
+      if (showMessage) setStatus('Signaturen wurden aktualisiert.', false);
+    }
+    async function selectAndCopy(element, successMessage) {
+      const range = document.createRange(); range.selectNodeContents(element);
       const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range);
-      const html = signature.innerHTML, text = signature.innerText;
+      const html = element.innerHTML, text = element.innerText;
       try {
         if (navigator.clipboard && window.ClipboardItem) {
           const item = new ClipboardItem({ 'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([text], { type: 'text/plain' }) });
-          await navigator.clipboard.write([item]); setStatus('Signatur wurde in die Zwischenablage kopiert.', false); return;
+          await navigator.clipboard.write([item]); setStatus(successMessage, false); return;
         }
       } catch (error) { setStatus('Signatur wurde markiert. Direktes Kopieren nicht unterstützt – bitte manuell "Kopieren" wählen.', true); return; }
       setStatus('Signatur wurde markiert. Direktes Kopieren nicht unterstützt – bitte manuell "Kopieren" wählen.', true);
+    }
+    function selectAndCopySignature() {
+      updateSignature(false);
+      return selectAndCopy(signature, 'Signatur wurde in die Zwischenablage kopiert.');
+    }
+    function selectAndCopyShortSignature() {
+      updateSignature(false);
+      return selectAndCopy(shortSignature, 'Kurzsignatur wurde in die Zwischenablage kopiert.');
     }
     fields.forEach(function (id) {
       document.getElementById(id).addEventListener('input', function () { if (id === 'email') emailWasEdited = true; if (id === 'firstName' || id === 'lastName') suggestEmailAddress(); updateSignature(false); });
@@ -543,6 +588,7 @@
     jobTitleSelect.addEventListener('change', toggleJobTitleFreetext); toggleJobTitleFreetext();
     form.addEventListener('submit', function (event) { event.preventDefault(); updateSignature(true); });
     document.getElementById('selectCopyButton').addEventListener('click', selectAndCopySignature);
+    document.getElementById('selectCopyShortButton').addEventListener('click', selectAndCopyShortSignature);
     updateSignature(false);
   </script>
 
