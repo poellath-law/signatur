@@ -3,20 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>POELLATH iOS Outlook Signaturvorlage</title>
+  <title>POELLATH E-Mail-Signaturvorlage</title>
   <style>
     :root {
       color-scheme: light;
-      --brand: #003a5d;
-      --brand-dark: #00263d;
-      --accent: #e7eef3;
-      --text: #1f2933;
-      --muted: #5f6b76;
-      --border: #d8e0e7;
-      --success: #0f766e;
-      --warning: #9a3412;
-      --surface: #ffffff;
-      --page: #f5f7f9;
+      --brand: #444F6C;
+      --brand-dark: #000000;
+      --accent: #4DB4F2;
+      --accent-soft: rgba(77, 180, 242, 0.14);
+      --text: #000000;
+      --muted: #7D7F87;
+      --border: #9C9EA6;
+      --success: #417866;
+      --warning: #A6535F;
+      --surface: #FFFFFF;
+      --page: #FFFFFF;
     }
 
     * {
@@ -38,11 +39,11 @@
     }
 
     .hero {
-      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-      color: #fff;
+      background: var(--brand);
+      color: var(--page);
       border-radius: 20px;
       padding: 24px;
-      box-shadow: 0 20px 50px rgba(0, 38, 61, 0.16);
+      box-shadow: 0 20px 50px rgba(68, 79, 108, 0.18);
     }
 
     .hero h1 {
@@ -54,8 +55,7 @@
 
     .hero p {
       margin: 0;
-      max-width: 760px;
-      color: rgba(255, 255, 255, 0.88);
+      color: rgba(255, 255, 255, 0.9);
       font-size: 16px;
     }
 
@@ -72,7 +72,7 @@
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 18px;
-      box-shadow: 0 12px 34px rgba(31, 41, 51, 0.08);
+      box-shadow: 0 12px 34px rgba(68, 79, 108, 0.10);
     }
 
     .card h2 {
@@ -110,7 +110,7 @@
       border-radius: 12px;
       padding: 12px 13px;
       color: var(--text);
-      background: #fff;
+      background: var(--page);
       font: 16px Arial, Helvetica, sans-serif;
       outline: none;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -119,7 +119,7 @@
     input:focus,
     select:focus {
       border-color: var(--brand);
-      box-shadow: 0 0 0 4px rgba(0, 58, 93, 0.12);
+      box-shadow: 0 0 0 4px var(--accent-soft);
     }
 
     .actions {
@@ -127,6 +127,7 @@
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 18px;
+      justify-content: center;
     }
 
     button {
@@ -144,14 +145,15 @@
     }
 
     .primary {
-      color: #fff;
+      color: var(--page);
       background: var(--brand);
-      box-shadow: 0 8px 18px rgba(0, 58, 93, 0.2);
+      box-shadow: 0 8px 18px rgba(68, 79, 108, 0.22);
+      padding: 12px 64px;
     }
 
     .secondary {
-      color: var(--brand-dark);
-      background: var(--accent);
+      color: var(--brand);
+      background: var(--accent-soft);
     }
 
     .status {
@@ -168,17 +170,62 @@
       font-size: 13px;
     }
 
-    .signature-wrap {
-      overflow: auto;
-      background: #fff;
+    .no-script {
+      margin: 14px 0 0;
+      padding: 12px 14px;
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      background: var(--accent-soft);
+      color: var(--brand-dark);
+      font-size: 14px;
+      font-weight: 700;
     }
 
-    #signature {
+    .noscript-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .noscript-signature-box h2 { margin-bottom: 12px; color: var(--brand); }
+    .fallback-section { display: block; }
+    body.no-js .interactive-grid { display: none; }
+    body.js .fallback-section { display: none; }
+
+    .info-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 16px; height: 16px; border-radius: 50%; background: var(--accent);
+      color: var(--page); font-size: 11px; font-weight: 700; font-style: normal;
+      margin-left: 6px; cursor: pointer; position: relative; vertical-align: middle;
+    }
+
+    .info-icon .tooltip {
+      display: none; position: absolute; bottom: 22px; left: 0; width: 240px;
+      background: var(--muted); color: var(--page); font-size: 12px;
+      font-weight: 400; font-style: normal; line-height: 1.4; padding: 8px 10px;
+      border-radius: 6px; z-index: 10;
+    }
+
+    .info-icon:hover .tooltip, .info-icon:focus .tooltip { display: block; }
+
+    .signature-wrap {
+      overflow: auto;
+      background: var(--page);
+    }
+
+    .preview-column {
+      display: grid;
+      gap: 20px;
+    }
+
+    #signature,
+    #shortSignature {
       display: inline-block;
       min-width: 300px;
       padding: 12px;
-      background: #fff;
-      color: #000;
+      background: var(--page);
+      color: var(--text);
       -webkit-user-select: text;
       user-select: text;
     }
@@ -210,19 +257,110 @@
     }
   </style>
 </head>
-<body>
+<body class="no-js">
+  <script>document.body.className = document.body.className.replace(/\bno-js\b/, 'js');</script>
   <main class="page">
     <section class="hero" aria-labelledby="page-title">
-      <h1 id="page-title">POELLATH iOS Outlook Signaturvorlage</h1>
-      <p>Persönliche Daten eintragen, Standort und Sprache auswählen, Signatur markieren und in Outlook für iOS einfügen.</p>
+      <h1 id="page-title">POELLATH E-Mail-Signaturvorlage</h1>
+      <p>Persönliche Daten eintragen, Standort und Sprache auswählen, Signatur markieren und in Outlook für Windows oder iOS einfügen.</p>
     </section>
 
-    <section class="grid">
+    <section class="fallback-section" aria-label="Statische Beispielsignaturen ohne JavaScript">
+      <div class="no-script">JavaScript ist deaktiviert oder blockiert.</div>
+      <section class="noscript-grid" aria-label="Statische Beispielsignaturen zum manuellen Kopieren">
+        <section class="card noscript-signature-box">
+          <h2>München · Deutsch</h2>
+          <div class="signature-wrap">
+            <div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">
+              Dr. Alex Mustermensch, LL.M.<br>
+              Rechtsanwalt<br>
+              Associate<br><br>
+              <a href="https://www.pplaw.com/" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
+              Bleiben Sie informiert: <a href="https://www.pplaw.com/anmeldung-zum-newsletter" style="color:#9C9EA6; text-decoration:underline;">Anmeldung zum Newsletter</a><br><br>
+              POELLATH<br>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Hofstatt 1<br>80331 München<br>T +49 89 24240 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+            </div>
+          </div>
+        </section>
+        <section class="card noscript-signature-box">
+          <h2>München · Englisch</h2>
+          <div class="signature-wrap">
+            <div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">
+              Dr. Alex Mustermensch, LL.M.<br>
+              Attorney-at-Law<br>
+              Associate<br><br>
+              <a href="https://www.pplaw.com/en" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
+              Stay informed: <a href="https://www.pplaw.com/en/newsletter-registration" style="color:#9C9EA6; text-decoration:underline;">Sign up for our newsletter</a><br><br>
+              POELLATH<br>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Hofstatt 1<br>80331 Munich<br>T +49 89 24240 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/en" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+            </div>
+          </div>
+        </section>
+        <section class="card noscript-signature-box">
+          <h2>Frankfurt · Deutsch</h2>
+          <div class="signature-wrap">
+            <div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">
+              Dr. Alex Mustermensch, LL.M.<br>
+              Rechtsanwalt<br>
+              Associate<br><br>
+              <a href="https://www.pplaw.com/" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
+              Bleiben Sie informiert: <a href="https://www.pplaw.com/anmeldung-zum-newsletter" style="color:#9C9EA6; text-decoration:underline;">Anmeldung zum Newsletter</a><br><br>
+              POELLATH<br>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>OpernTurm | Bockenheimer Landstraße 2-4<br>60306 Frankfurt aM<br>T +49 69 247047 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+            </div>
+          </div>
+        </section>
+        <section class="card noscript-signature-box">
+          <h2>Frankfurt · Englisch</h2>
+          <div class="signature-wrap">
+            <div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">
+              Dr. Alex Mustermensch, LL.M.<br>
+              Attorney-at-Law<br>
+              Associate<br><br>
+              <a href="https://www.pplaw.com/en" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
+              Stay informed: <a href="https://www.pplaw.com/en/newsletter-registration" style="color:#9C9EA6; text-decoration:underline;">Sign up for our newsletter</a><br><br>
+              POELLATH<br>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>OpernTurm | Bockenheimer Landstraße 2-4<br>60306 Frankfurt aM<br>T +49 69 247047 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/en" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+            </div>
+          </div>
+        </section>
+        <section class="card noscript-signature-box">
+          <h2>Berlin · Deutsch</h2>
+          <div class="signature-wrap">
+            <div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">
+              Dr. Alex Mustermensch, LL.M.<br>
+              Rechtsanwalt<br>
+              Associate<br><br>
+              <a href="https://www.pplaw.com/" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
+              Bleiben Sie informiert: <a href="https://www.pplaw.com/anmeldung-zum-newsletter" style="color:#9C9EA6; text-decoration:underline;">Anmeldung zum Newsletter</a><br><br>
+              POELLATH<br>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Potsdamer Platz 5<br>10785 Berlin<br>T +49 30 25353 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+            </div>
+          </div>
+        </section>
+        <section class="card noscript-signature-box">
+          <h2>Berlin · Englisch</h2>
+          <div class="signature-wrap">
+            <div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">
+              Dr. Alex Mustermensch, LL.M.<br>
+              Attorney-at-Law<br>
+              Associate<br><br>
+              <a href="https://www.pplaw.com/en" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
+              Stay informed: <a href="https://www.pplaw.com/en/newsletter-registration" style="color:#9C9EA6; text-decoration:underline;">Sign up for our newsletter</a><br><br>
+              POELLATH<br>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Potsdamer Platz 5<br>10785 Berlin<br>T +49 30 25353 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/en" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+            </div>
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <section class="grid interactive-grid">
       <form class="card" id="signatureForm" autocomplete="on">
         <h2>Daten eingeben</h2>
         <div class="form-grid">
           <div class="field">
-            <label for="title">Titel</label>
+            <label for="title">Titel (vorgestellt)</label>
             <input id="title" name="title" type="text" placeholder="Dr.">
           </div>
           <div class="field">
@@ -234,8 +372,17 @@
             <input id="lastName" name="lastName" type="text" placeholder="Mustermann">
           </div>
           <div class="field">
-            <label for="jobTitle">Berufsbezeichnung</label>
-            <input id="jobTitle" name="jobTitle" type="text" placeholder="Rechtsanwalt">
+            <label for="titleSuffix">Titel (nachgestellt)</label>
+            <input id="titleSuffix" name="titleSuffix" type="text" placeholder="LL.M. (ggf. Ort)">
+          </div>
+          <div class="field full">
+            <label for="jobTitle">Berufsbezeichnung <span class="info-icon" tabindex="0">i<span class="tooltip">Bitte Zutreffendes aus der Liste auswählen, bei anderen gewünschten Bezeichnungen bitte den Freitext wählen und manuell auf Deutsch oder Englisch eintragen.</span></span></label>
+            <select id="jobTitle" name="jobTitle">
+              <option value="">Bitte wählen...</option><option value="ra">Rechtsanwalt</option><option value="rain">Rechtsanwältin</option><option value="stb">Steuerberater</option><option value="stbin">Steuerberaterin</option><option value="ra_stb">Rechtsanwalt, Steuerberater</option><option value="rain_stbin">Rechtsanwältin, Steuerberaterin</option><option value="freitext">Freitext</option>
+            </select>
+          </div>
+          <div class="field full" id="jobTitleFreetextField" style="display:none;">
+            <input id="jobTitleFreetext" name="jobTitleFreetext" type="text" placeholder="eigene Bezeichnung eingeben">
           </div>
           <div class="field full">
             <label for="position">Position</label>
@@ -246,12 +393,16 @@
             <input id="extension" name="extension" type="tel" inputmode="tel" placeholder="123">
           </div>
           <div class="field">
+            <label for="mobile">Handynummer</label>
+            <input id="mobile" name="mobile" type="tel" inputmode="tel" placeholder="+49 171 1234567">
+          </div>
+          <div class="field">
             <label for="email">E-Mail-Adresse</label>
-            <input id="email" name="email" type="email" placeholder="vorname.nachname@pplaw.com">
+            <input id="email" name="email" type="email" value="@pplaw.com" placeholder="vorname.nachname@pplaw.com">
           </div>
           <div class="field full">
-            <label for="linkedin">Persönlicher LinkedIn-Link oder LinkedIn-Text</label>
-            <input id="linkedin" name="linkedin" type="text" placeholder="https://www.linkedin.com/in/name">
+            <label for="linkedin">Link zum LinkedIn-Profil (optional)</label>
+            <input id="linkedin" name="linkedin" type="text" placeholder="https://www.linkedin.com/in/benutzername">
           </div>
           <div class="field">
             <label for="language">Sprache</label>
@@ -270,212 +421,195 @@
           </div>
         </div>
         <div class="actions">
-          <button class="secondary" type="button" id="refreshButton">Signatur aktualisieren</button>
-          <button class="primary" type="button" id="selectButton">Signatur markieren</button>
-          <button class="secondary" type="button" id="copyButton">Direkt kopieren</button>
+          <button class="primary" type="button" id="selectCopyButton">Signatur kopieren</button>
         </div>
         <div class="status" id="status" role="status" aria-live="polite"></div>
-        <p class="hint">Tipp für iOS: Nach „Signatur markieren“ im markierten Bereich lange drücken und „Kopieren“ wählen.</p>
       </form>
 
-      <section class="card">
-        <h2>Fertige Signatur</h2>
-        <div class="signature-wrap">
-          <div id="signature"></div>
-        </div>
-      </section>
+      <div class="preview-column">
+        <section class="card">
+          <h2>Fertige Signatur</h2>
+          <div class="signature-wrap">
+            <div id="signature">
+            <div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">
+              Dr. Alex Mustermensch, LL.M.<br>
+              Rechtsanwalt<br>
+              Associate<br><br>
+              <a href="https://www.pplaw.com/" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
+              Bleiben Sie informiert: <a href="https://www.pplaw.com/anmeldung-zum-newsletter" style="color:#9C9EA6; text-decoration:underline;">Anmeldung zum Newsletter</a><br><br>
+              POELLATH<br>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Hofstatt 1<br>80331 München<br>T +49 89 24240 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+            </div>
+          </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Kurzsignatur</h2>
+          <div class="signature-wrap">
+            <div id="shortSignature"></div>
+          </div>
+          <div class="actions">
+            <button class="secondary" type="button" id="selectCopyShortButton">Kurzsignatur kopieren</button>
+          </div>
+        </section>
+      </div>
     </section>
   </main>
 
   <script>
-    const logoUrl = 'https://www.pplaw.com/sites/default/files/2026-06/POELLATH-Logo-positiv-Signatur-240px.png';
+    const logoUrl = 'https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png';
     const websiteUrl = 'https://www.pplaw.com/';
     const companyLinkedInUrl = 'https://www.linkedin.com/company/poellath/';
-
     const locations = {
-      munich: {
-        deName: 'München',
-        enName: 'Munich',
-        address: ['Hofstatt 1', '80331 München'],
-        phonePrefix: '+49 89 24240'
-      },
-      frankfurt: {
-        deName: 'Frankfurt',
-        enName: 'Frankfurt',
-        address: ['OpernTurm | Bockenheimer Landstraße 2-4', '60306 Frankfurt aM'],
-        phonePrefix: '+49 69 247047'
-      },
-      berlin: {
-        deName: 'Berlin',
-        enName: 'Berlin',
-        address: ['Potsdamer Platz 5', '10785 Berlin'],
-        phonePrefix: '+49 30 25353'
-      }
+      munich: { deName: 'München', enName: 'Munich', address: ['Hofstatt 1', '80331 München'], phonePrefix: '+49 89 24240' },
+      frankfurt: { deName: 'Frankfurt', enName: 'Frankfurt', address: ['OpernTurm | Bockenheimer Landstraße 2-4', '60306 Frankfurt aM'], phonePrefix: '+49 69 247047' },
+      berlin: { deName: 'Berlin', enName: 'Berlin', address: ['Potsdamer Platz 5', '10785 Berlin'], phonePrefix: '+49 30 25353' }
     };
-
-    const fields = ['title', 'firstName', 'lastName', 'jobTitle', 'position', 'extension', 'email', 'linkedin', 'language', 'location'];
+    const jobTitles = {
+      ra: { de: 'Rechtsanwalt', en: 'Attorney-at-Law' },
+      rain: { de: 'Rechtsanwältin', en: 'Attorney-at-Law' },
+      stb: { de: 'Steuerberater', en: 'Tax Advisor' },
+      stbin: { de: 'Steuerberaterin', en: 'Tax Advisor' },
+      ra_stb: { de: 'Rechtsanwalt, Steuerberater', en: 'Attorney-at-Law, Tax Advisor' },
+      rain_stbin: { de: 'Rechtsanwältin, Steuerberaterin', en: 'Attorney-at-Law, Tax Advisor' }
+    };
+    const jobTitleSelect = document.getElementById('jobTitle');
+    const jobTitleFreetextField = document.getElementById('jobTitleFreetextField');
+    const fields = ['title', 'firstName', 'lastName', 'titleSuffix', 'jobTitle', 'jobTitleFreetext', 'position', 'extension', 'mobile', 'email', 'linkedin', 'language', 'location'];
     const form = document.getElementById('signatureForm');
     const signature = document.getElementById('signature');
+    const shortSignature = document.getElementById('shortSignature');
     const statusEl = document.getElementById('status');
+    const emailInput = document.getElementById('email');
+    let emailWasEdited = false;
+    let lastSuggestedEmail = emailInput.value;
 
-    function getValue(id) {
-      return document.getElementById(id).value.trim();
-    }
-
+    function getValue(id) { return document.getElementById(id).value.trim(); }
     function escapeHtml(value) {
       return value.replace(/[&<>'"]/g, function (char) {
-        return {
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          "'": '&#39;',
-          '"': '&quot;'
-        }[char];
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char];
       });
     }
-
-    function escapeAttribute(value) {
-      return escapeHtml(value).replace(/`/g, '&#96;');
-    }
-
+    function escapeAttribute(value) { return escapeHtml(value).replace(/`/g, '&#96;'); }
     function normalizeLinkedIn(value) {
-      if (!value) {
-        return '';
-      }
-
-      if (/^https?:\/\//i.test(value)) {
-        return value;
-      }
-
-      if (/^www\./i.test(value)) {
-        return 'https://' + value;
-      }
-
+      if (!value || /^https?:\/\/www\.linkedin\.com\/?$/i.test(value)) return '';
+      const rootProfileMatch = value.match(/^https?:\/\/(?:www\.)?linkedin\.com\/([^/?#]+)\/?$/i);
+      if (rootProfileMatch && !/^(in|company|school|showcase)$/i.test(rootProfileMatch[1])) return 'https://www.linkedin.com/in/' + rootProfileMatch[1];
+      if (/^https?:\/\//i.test(value)) return value;
+      if (/^www\./i.test(value)) return 'https://' + value;
       return value;
     }
-
-    function createLine(value) {
-      return value ? escapeHtml(value) + '<br>' : '';
+    function getLinkedInUsername(value) {
+      if (!value || /^https?:\/\/www\.linkedin\.com\/?$/i.test(value)) return '';
+      const match = value.match(/linkedin\.com\/in\/([^/?#]+)/i);
+      if (match && match[1]) { try { return decodeURIComponent(match[1]); } catch (error) { return match[1]; } }
+      const rootProfileMatch = value.match(/^https?:\/\/(?:www\.)?linkedin\.com\/([^/?#]+)\/?$/i);
+      const fallback = rootProfileMatch && !/^(in|company|school|showcase)$/i.test(rootProfileMatch[1]) ? rootProfileMatch[1] : value.replace(/^https?:\/\//i, '').replace(/^www\./i, '').replace(/\/$/, '');
+      return fallback.toLowerCase() === 'name' ? '' : fallback;
     }
-
-    function setStatus(message, isWarning) {
-      statusEl.textContent = message;
-      statusEl.style.color = isWarning ? 'var(--warning)' : 'var(--success)';
+    function normalizeEmailPart(value) {
+      return value.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9-]+/g, '').replace(/^-+|-+$/g, '');
     }
-
+    function normalizeMobileNumber(value) {
+      let digits = value.replace(/\D/g, '');
+      if (digits.startsWith('0049')) digits = digits.slice(4);
+      else if (digits.startsWith('49')) digits = digits.slice(2);
+      if (digits.startsWith('0')) digits = digits.slice(1);
+      if (!digits) return '';
+      const areaCode = digits.slice(0, 3);
+      const subscriberNumber = digits.slice(3);
+      return 'T +49 ' + areaCode + (subscriberNumber ? ' ' + subscriberNumber : '');
+    }
+    function suggestEmailAddress() {
+      if (emailWasEdited && emailInput.value !== lastSuggestedEmail && emailInput.value !== '@pplaw.com') return;
+      const firstTokens = getValue('firstName').split(/\s+/).filter(Boolean);
+      const lastTokens = getValue('lastName').split(/\s+/).filter(Boolean);
+      const first = normalizeEmailPart(firstTokens[0] || '');
+      const last = normalizeEmailPart(lastTokens[lastTokens.length - 1] || '');
+      const suggestedEmail = first && last ? first + '.' + last + '@pplaw.com' : '@pplaw.com';
+      emailInput.value = suggestedEmail;
+      lastSuggestedEmail = suggestedEmail;
+    }
+    function createLine(value) { return value ? escapeHtml(value) + '<br>' : ''; }
+    function setStatus(message, isWarning) { statusEl.textContent = message; statusEl.style.color = isWarning ? 'var(--warning)' : 'var(--success)'; }
     function buildSignatureHtml() {
+      const title = getValue('title'), firstName = getValue('firstName'), lastName = getValue('lastName'), titleSuffix = getValue('titleSuffix');
+      const jobTitleKey = getValue('jobTitle'), position = getValue('position'), extension = getValue('extension'), email = getValue('email'), linkedin = getValue('linkedin');
+      const language = getValue('language'), location = locations[getValue('location')] || locations.munich;
+      const fullName = [title, firstName, lastName].filter(Boolean).join(' ') + (titleSuffix ? ', ' + titleSuffix : '');
+      const websiteHref = language === 'en' ? 'https://www.pplaw.com/en' : websiteUrl;
+      const linkedInUsername = getLinkedInUsername(linkedin);
+      const newsletterPretext = language === 'en' ? 'Stay informed: ' : 'Bleiben Sie informiert: ';
+      const newsletterText = language === 'en' ? 'Sign up for our newsletter' : 'Anmeldung zum Newsletter';
+      const newsletterHref = language === 'en' ? 'https://www.pplaw.com/en/newsletter-registration' : 'https://www.pplaw.com/anmeldung-zum-newsletter';
+      const addressLines = location.address.map(line => language === 'en' ? line.replace('München', 'Munich') : line);
+      const phone = extension ? location.phonePrefix + ' ' + extension : location.phonePrefix;
+      const personalLinkedInHref = normalizeLinkedIn(linkedin);
+      const personalLinkedIn = personalLinkedInHref && linkedInUsername ? ' | <a href="' + escapeAttribute(personalLinkedInHref) + '" style="color:#000000; text-decoration:underline;">' + escapeHtml(firstName) + '@LinkedIn</a>' : '';
+      const emailHtml = email ? '<a href="mailto:' + escapeAttribute(email) + '" style="color:#000000; text-decoration:underline;">' + escapeHtml(email) + '</a>' : '';
+      const jobTitle = jobTitleKey === 'freitext' ? getValue('jobTitleFreetext') : (jobTitles[jobTitleKey] ? jobTitles[jobTitleKey][language] : '');
+      return '<div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">' + createLine(fullName) + createLine(jobTitle) + createLine(position) + '<br>'
+        + '<a href="' + websiteHref + '" style="text-decoration:none;"><img src="' + logoUrl + '" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>'
+        + escapeHtml(newsletterPretext) + '<a href="' + newsletterHref + '" style="color:#9C9EA6; text-decoration:underline;">' + escapeHtml(newsletterText) + '</a><br><br>POELLATH<br><span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>'
+        + escapeHtml(addressLines[0]) + '<br>' + escapeHtml(addressLines[1]) + '<br>T ' + escapeHtml(phone) + '<br>' + emailHtml + personalLinkedIn + '<br><a href="' + websiteHref + '" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="' + companyLinkedInUrl + '" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span></div>';
+    }
+    function buildShortSignatureHtml() {
       const title = getValue('title');
       const firstName = getValue('firstName');
       const lastName = getValue('lastName');
-      const jobTitle = getValue('jobTitle');
-      const position = getValue('position');
-      const extension = getValue('extension');
-      const email = getValue('email');
-      const linkedin = getValue('linkedin');
-      const language = getValue('language');
-      const locationKey = getValue('location');
-      const location = locations[locationKey] || locations.munich;
-      const fullName = [title, firstName, lastName].filter(Boolean).join(' ');
-      const nameForLinkedIn = [firstName, lastName].filter(Boolean).join(' ') || 'Name';
-      const newsletterText = language === 'en' ? 'Stay informed: Sign up for our newsletter' : 'Bleiben Sie informiert: Anmeldung zum Newsletter';
-      const newsletterHref = language === 'en' ? 'https://www.pplaw.com/en/newsletter-registration' : 'https://www.pplaw.com/anmeldung-zum-newsletter';
-      const addressLines = location.address.map(function (line) {
-        return language === 'en' ? line.replace('München', 'Munich') : line;
-      });
-      const phone = extension ? location.phonePrefix + ' ' + extension : location.phonePrefix;
-      const personalLinkedInHref = normalizeLinkedIn(linkedin);
-      const personalLinkedIn = personalLinkedInHref
-        ? ' | <a href="' + escapeAttribute(personalLinkedInHref) + '" style="color:#000000; text-decoration:none;">' + escapeHtml(nameForLinkedIn) + '@LinkedIn</a>'
-        : '';
-      const emailHtml = email
-        ? '<a href="mailto:' + escapeAttribute(email) + '" style="color:#000000; text-decoration:none;">' + escapeHtml(email) + '</a>'
-        : '';
-
-      return ''
-        + '<div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">'
-        + createLine(fullName)
-        + createLine(jobTitle)
-        + createLine(position)
-        + '<br>'
-        + '<a href="' + websiteUrl + '" style="text-decoration:none;"><img src="' + logoUrl + '" width="240" alt="POELLATH" style="border:0; width:240px; height:auto; display:block;"></a><br>'
-        + '<a href="' + newsletterHref + '" style="color:#000000; text-decoration:none;">' + newsletterText + '</a><br><br>'
-        + 'POELLATH<br>'
-        + '<span style="font-size:8pt; line-height:1.25;">'
-        + 'P+P Pöllath + Partners<br>'
-        + 'Rechtsanwälte und Steuerberater mbB<br>'
-        + escapeHtml(addressLines[0]) + '<br>'
-        + escapeHtml(addressLines[1]) + '<br>'
-        + 'T ' + escapeHtml(phone) + '<br>'
-        + emailHtml + personalLinkedIn + '<br>'
-        + '<a href="' + websiteUrl + '" style="color:#000000; text-decoration:none;">www.pplaw.com</a> | '
-        + '<a href="' + companyLinkedInUrl + '" style="color:#000000; text-decoration:none;">POELLATH@LinkedIn</a>'
-        + '</span>'
-        + '</div>';
+      const titleSuffix = getValue('titleSuffix');
+      const mobile = normalizeMobileNumber(getValue('mobile'));
+      const fullName = [title, firstName, lastName].filter(Boolean).join(' ') + (titleSuffix ? ', ' + titleSuffix : '');
+      return '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>'
+        + '<td style="padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:12pt; font-weight:bold;">+</td>'
+        + '<td style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif;">'
+        + '<span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; font-weight:bold; color:#7D7F87;">' + escapeHtml(fullName) + '</span>'
+        + (mobile ? '<hr style="width:50px; height:2px; margin:5px 0; padding:0; border:0; background-color:#4DB4F2; color:#4DB4F2; text-align:left;"><span style="font-family:Arial, Helvetica, sans-serif; color:#7D7F87;">' + escapeHtml(mobile) + '</span>' : '')
+        + '</td>'
+        + '</tr></table>';
     }
-
     function updateSignature(showMessage) {
       signature.innerHTML = buildSignatureHtml();
-      if (showMessage) {
-        setStatus('Signatur wurde aktualisiert.', false);
-      }
+      shortSignature.innerHTML = buildShortSignatureHtml();
+      if (showMessage) setStatus('Signaturen wurden aktualisiert.', false);
     }
-
-    function selectSignature() {
-      updateSignature(false);
-      const range = document.createRange();
-      range.selectNodeContents(signature);
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-      setStatus('Signatur wurde markiert. Jetzt Kopieren wählen.', false);
+    function buildClipboardDocument(element) {
+      return '<!doctype html><html><head><meta charset="utf-8"><style>body,table,td,span{font-family:Arial,Helvetica,sans-serif!important;}</style></head><body style="margin:0; font-family:Arial, Helvetica, sans-serif;">'
+        + element.innerHTML
+        + '</body></html>';
     }
-
-    async function copySignature() {
-      updateSignature(false);
-      const html = signature.innerHTML;
-      const text = signature.innerText;
-
+    async function selectAndCopy(element, successMessage) {
+      const range = document.createRange(); range.selectNodeContents(element);
+      const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range);
+      const html = buildClipboardDocument(element), text = element.innerText;
       try {
         if (navigator.clipboard && window.ClipboardItem) {
-          const item = new ClipboardItem({
-            'text/html': new Blob([html], { type: 'text/html' }),
-            'text/plain': new Blob([text], { type: 'text/plain' })
-          });
-          await navigator.clipboard.write([item]);
-          setStatus('Signatur wurde in die Zwischenablage kopiert.', false);
-          return;
+          const item = new ClipboardItem({ 'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([text], { type: 'text/plain' }) });
+          await navigator.clipboard.write([item]); setStatus(successMessage, false); return;
         }
-      } catch (error) {
-        selectSignature();
-        setStatus('Direktes Kopieren wird nicht unterstützt. Signatur wurde markiert; bitte Kopieren wählen.', true);
-        return;
-      }
-
-      selectSignature();
-      setStatus('Direktes Kopieren wird nicht unterstützt. Signatur wurde markiert; bitte Kopieren wählen.', true);
+      } catch (error) { setStatus('Signatur wurde markiert. Direktes Kopieren nicht unterstützt – bitte manuell "Kopieren" wählen.', true); return; }
+      setStatus('Signatur wurde markiert. Direktes Kopieren nicht unterstützt – bitte manuell "Kopieren" wählen.', true);
     }
-
+    function selectAndCopySignature() {
+      updateSignature(false);
+      return selectAndCopy(signature, 'Signatur wurde in die Zwischenablage kopiert.');
+    }
+    function selectAndCopyShortSignature() {
+      updateSignature(false);
+      return selectAndCopy(shortSignature, 'Kurzsignatur wurde in die Zwischenablage kopiert.');
+    }
     fields.forEach(function (id) {
-      document.getElementById(id).addEventListener('input', function () {
-        updateSignature(false);
-      });
-      document.getElementById(id).addEventListener('change', function () {
-        updateSignature(false);
-      });
+      document.getElementById(id).addEventListener('input', function () { if (id === 'email') emailWasEdited = true; if (id === 'firstName' || id === 'lastName') suggestEmailAddress(); updateSignature(false); });
+      document.getElementById(id).addEventListener('change', function () { if (id === 'firstName' || id === 'lastName') suggestEmailAddress(); updateSignature(false); });
     });
-
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      updateSignature(true);
-    });
-
-    document.getElementById('refreshButton').addEventListener('click', function () {
-      updateSignature(true);
-    });
-    document.getElementById('selectButton').addEventListener('click', selectSignature);
-    document.getElementById('copyButton').addEventListener('click', copySignature);
-
+    function toggleJobTitleFreetext() { jobTitleFreetextField.style.display = jobTitleSelect.value === 'freitext' ? 'block' : 'none'; }
+    jobTitleSelect.addEventListener('change', toggleJobTitleFreetext); toggleJobTitleFreetext();
+    form.addEventListener('submit', function (event) { event.preventDefault(); updateSignature(true); });
+    document.getElementById('selectCopyButton').addEventListener('click', selectAndCopySignature);
+    document.getElementById('selectCopyShortButton').addEventListener('click', selectAndCopyShortSignature);
     updateSignature(false);
   </script>
+
 </body>
 </html>
