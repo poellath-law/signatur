@@ -545,16 +545,17 @@
         + escapeHtml(addressLines[0]) + '<br>' + escapeHtml(addressLines[1]) + '<br>T ' + escapeHtml(phone) + '<br>' + emailHtml + personalLinkedIn + '<br><a href="' + websiteHref + '" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="' + companyLinkedInUrl + '" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span></div>';
     }
     function buildShortSignatureHtml() {
+      const title = getValue('title');
       const firstName = getValue('firstName');
       const lastName = getValue('lastName');
       const titleSuffix = getValue('titleSuffix');
       const mobile = getValue('mobile');
-      const fullName = [firstName, lastName].filter(Boolean).join(' ') + (titleSuffix ? ', ' + titleSuffix : '');
+      const fullName = [title, firstName, lastName].filter(Boolean).join(' ') + (titleSuffix ? ', ' + titleSuffix : '');
       return '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>'
         + '<td style="padding:0 12px 0 0; vertical-align:top; color:#4DB4F2; font-weight:bold;">+</td>'
         + '<td style="padding:0; vertical-align:top; color:#7D7F87;">'
         + '<span style="font-weight:bold; color:#7D7F87;">' + escapeHtml(fullName) + '</span>'
-        + (mobile ? '<div style="width:30px; height:0; margin:5px 0; border-top:1px solid #4DB4F2;"></div>' + escapeHtml(mobile) : '')
+        + (mobile ? '<table role="presentation" width="50" cellspacing="0" cellpadding="0" border="0" style="width:50px; border-collapse:collapse; margin:5px 0;"><tr><td width="50" height="2" bgcolor="#4DB4F2" style="width:50px; height:2px; padding:0; background:#4DB4F2; font-size:0; line-height:2px;">&nbsp;</td></tr></table><span style="color:#7D7F87;">' + escapeHtml(mobile) + '</span>' : '')
         + '</td>'
         + '</tr></table>';
     }
@@ -563,10 +564,15 @@
       shortSignature.innerHTML = buildShortSignatureHtml();
       if (showMessage) setStatus('Signaturen wurden aktualisiert.', false);
     }
+    function buildClipboardDocument(element) {
+      return '<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;">'
+        + element.innerHTML
+        + '</body></html>';
+    }
     async function selectAndCopy(element, successMessage) {
       const range = document.createRange(); range.selectNodeContents(element);
       const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range);
-      const html = element.innerHTML, text = element.innerText;
+      const html = buildClipboardDocument(element), text = element.innerText;
       try {
         if (navigator.clipboard && window.ClipboardItem) {
           const item = new ClipboardItem({ 'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([text], { type: 'text/plain' }) });
