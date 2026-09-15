@@ -415,7 +415,7 @@
             <input id="extension" name="extension" type="tel" inputmode="tel" placeholder="123">
           </div>
           <div class="field">
-            <label for="mobile">Handynummer</label>
+            <label for="mobile">Mobilnummer</label>
             <input id="mobile" name="mobile" type="tel" inputmode="tel" placeholder="+49 171 1234567">
             <span class="hint" style="margin:0;">Optional, für die Kurzsignatur.</span>
           </div>
@@ -423,7 +423,7 @@
             <legend style="margin-bottom:6px; font-size:13px; font-weight:700;">Telefonnummer der Kurzsignatur</legend>
             <div class="radio-group">
               <label class="radio-option"><input type="radio" name="shortPhoneSource" value="extension"> Durchwahl</label>
-              <label class="radio-option"><input type="radio" name="shortPhoneSource" value="mobile" checked> Mobilnummer</label>
+              <label class="radio-option"><input type="radio" name="shortPhoneSource" value="mobile"> Mobilnummer</label>
             </div>
           </fieldset>
           <div class="field">
@@ -480,7 +480,7 @@
             <div id="shortSignature"></div>
           </div>
           <div class="actions">
-            <button class="secondary" type="button" id="selectCopyShortButton">Kurzsignatur kopieren</button>
+            <button class="primary" type="button" id="selectCopyShortButton">Kurzsignatur kopieren</button>
           </div>
           <div class="status" id="shortSignatureStatus" role="status" aria-live="polite"></div>
         </section>
@@ -572,6 +572,7 @@
     function buildSignatureHtml() {
       const title = getValue('title'), firstName = getValue('firstName'), lastName = getValue('lastName'), titleSuffix = getValue('titleSuffix');
       const jobTitleKey = getValue('jobTitle'), position = getValue('position'), extension = getValue('extension'), email = getValue('email'), linkedin = getValue('linkedin');
+      const mobile = normalizeMobileNumber(getValue('mobile'));
       const language = getValue('language'), location = locations[getValue('location')] || locations.munich;
       const fullName = [title, firstName, lastName].filter(Boolean).join(' ') + (titleSuffix ? ', ' + titleSuffix : '');
       const websiteHref = language === 'en' ? 'https://www.pplaw.com/en' : websiteUrl;
@@ -580,7 +581,8 @@
       const newsletterText = language === 'en' ? 'Sign up for our newsletter' : 'Anmeldung zum Newsletter';
       const newsletterHref = language === 'en' ? 'https://www.pplaw.com/en/newsletter-registration' : 'https://www.pplaw.com/anmeldung-zum-newsletter';
       const addressLines = location.address.map(line => language === 'en' ? line.replace('München', 'Munich') : line);
-      const phone = extension ? location.phonePrefix + ' ' + extension : location.phonePrefix;
+      const phoneLines = (extension ? 'T ' + escapeHtml(location.phonePrefix + ' ' + extension) + '<br>' : '')
+        + (mobile ? 'M ' + escapeHtml(mobile) + '<br>' : '');
       const personalLinkedInHref = normalizeLinkedIn(linkedin);
       const personalLinkedIn = personalLinkedInHref && linkedInUsername ? ' | <a href="' + escapeAttribute(personalLinkedInHref) + '" style="color:#000000; text-decoration:underline;">' + escapeHtml(firstName) + '@LinkedIn</a>' : '';
       const emailHtml = email ? '<a href="mailto:' + escapeAttribute(email) + '" style="color:#000000; text-decoration:underline;">' + escapeHtml(email) + '</a>' : '';
@@ -588,7 +590,7 @@
       return '<div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">' + createLine(fullName) + createLine(jobTitle) + createLine(position) + '<br>'
         + '<a href="' + websiteHref + '" style="text-decoration:none;"><img src="' + logoUrl + '" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>'
         + escapeHtml(newsletterPretext) + '<a href="' + newsletterHref + '" style="color:#9C9EA6; text-decoration:underline;">' + escapeHtml(newsletterText) + '</a><br><br>POELLATH<br><span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>'
-        + escapeHtml(addressLines[0]) + '<br>' + escapeHtml(addressLines[1]) + '<br>T ' + escapeHtml(phone) + '<br>' + emailHtml + personalLinkedIn + '<br><a href="' + websiteHref + '" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="' + companyLinkedInUrl + '" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span></div>';
+        + escapeHtml(addressLines[0]) + '<br>' + escapeHtml(addressLines[1]) + '<br>' + phoneLines + emailHtml + personalLinkedIn + '<br><a href="' + websiteHref + '" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="' + companyLinkedInUrl + '" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span></div>';
     }
     function buildShortSignatureHtml() {
       const title = getValue('title');
@@ -597,7 +599,8 @@
       const titleSuffix = getValue('titleSuffix');
       const location = locations[getValue('location')] || locations.munich;
       const extension = getValue('extension');
-      const shortPhoneSource = document.querySelector('input[name="shortPhoneSource"]:checked').value;
+      const selectedPhoneSource = document.querySelector('input[name="shortPhoneSource"]:checked');
+      const shortPhoneSource = selectedPhoneSource ? selectedPhoneSource.value : '';
       const phone = shortPhoneSource === 'extension'
         ? location.phonePrefix + (extension ? ' ' + extension : '')
         : normalizeMobileNumber(getValue('mobile'));
@@ -652,6 +655,18 @@
     });
     shortPhoneSourceInputs.forEach(function (input) {
       input.addEventListener('change', function () { updateSignature(false); });
+    });
+    function selectShortPhoneSource(source) {
+      shortPhoneSourceInputs.forEach(function (input) {
+        input.checked = input.value === source;
+      });
+      updateSignature(false);
+    }
+    document.getElementById('extension').addEventListener('focus', function () {
+      selectShortPhoneSource('extension');
+    });
+    document.getElementById('mobile').addEventListener('focus', function () {
+      selectShortPhoneSource('mobile');
     });
     function toggleJobTitleFreetext() { jobTitleFreetextField.style.display = jobTitleSelect.value === 'freitext' ? 'block' : 'none'; }
     jobTitleSelect.addEventListener('change', toggleJobTitleFreetext); toggleJobTitleFreetext();
