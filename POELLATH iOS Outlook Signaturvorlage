@@ -128,6 +128,10 @@
       gap: 10px 20px;
     }
 
+    .short-phone-choice {
+      margin: 0 0 10px;
+    }
+
     .radio-option {
       display: inline-flex;
       align-items: center;
@@ -415,7 +419,7 @@
             <input id="mobile" name="mobile" type="tel" inputmode="tel" placeholder="+49 171 1234567">
             <span class="hint" style="margin:0;">Optional, für die Kurzsignatur.</span>
           </div>
-          <fieldset class="field full" style="margin:0; padding:0; border:0;">
+          <fieldset class="field full short-phone-choice" style="padding:0; border:0;">
             <legend style="margin-bottom:6px; font-size:13px; font-weight:700;">Telefonnummer der Kurzsignatur</legend>
             <div class="radio-group">
               <label class="radio-option"><input type="radio" name="shortPhoneSource" value="extension"> Durchwahl</label>
@@ -599,12 +603,12 @@
         : normalizeMobileNumber(getValue('mobile'));
       const fullName = [title, firstName, lastName].filter(Boolean).join(' ');
       return '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>'
-        + '<td valign="middle" style="padding:0 8px 0 0; vertical-align:middle; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; text-align:center;">+</td>'
-        + '<td valign="middle" style="padding:0; vertical-align:middle; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt; mso-line-height-rule:exactly;">'
+        + '<td valign="top" style="padding:0 8px 0 0; vertical-align:top;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;"><tr><td height="2" style="height:2px; line-height:2px; mso-line-height-rule:exactly; font-size:1px;">&nbsp;</td></tr><tr><td style="padding:0; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; text-align:center;">+</td></tr></table></td>'
+        + '<td valign="top" style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt; mso-line-height-rule:exactly;">'
         + '<span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:bold; color:#7D7F87;">' + escapeHtml(fullName) + '</span>'
         + (titleSuffix ? '<span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; color:#7D7F87;">, ' + escapeHtml(titleSuffix) + '</span>' : '')
         + '</td></tr>'
-        + (phone ? '<tr><td style="padding:0 8px 0 0;">&nbsp;</td><td style="padding:13px 0 0; font-family:Arial, Helvetica, sans-serif; line-height:20px; color:#7D7F87;">' + escapeHtml(phone) + '</td></tr>' : '')
+        + (phone ? '<tr><td style="padding:0 8px 0 0;">&nbsp;</td><td style="padding:5px 0 0; font-family:Arial, Helvetica, sans-serif; line-height:20px; color:#7D7F87;">' + escapeHtml(phone) + '</td></tr>' : '')
         + '</table>';
     }
     function updateSignature(showMessage) {
