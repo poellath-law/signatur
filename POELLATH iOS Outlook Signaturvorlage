@@ -393,8 +393,9 @@
             <input id="extension" name="extension" type="tel" inputmode="tel" placeholder="123">
           </div>
           <div class="field">
-            <label for="mobile">Handynummer</label>
+            <label for="mobile">Handynummer *</label>
             <input id="mobile" name="mobile" type="tel" inputmode="tel" placeholder="+49 171 1234567">
+            <span class="hint" style="margin:0;">* Wird für die Kurzsignatur verwendet.</span>
           </div>
           <div class="field">
             <label for="email">E-Mail-Adresse</label>
@@ -562,11 +563,11 @@
       const mobile = normalizeMobileNumber(getValue('mobile'));
       const fullName = [title, firstName, lastName].filter(Boolean).join(' ');
       return '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>'
-        + '<td style="padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:16pt; line-height:15pt; font-weight:normal; text-align:center;">+</td>'
+        + '<td style="padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; font-weight:normal; text-align:center;">+</td>'
         + '<td style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif;">'
-        + '<span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; font-weight:bold; color:#7D7F87;">' + escapeHtml(fullName) + '</span>'
-        + (titleSuffix ? '<span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; font-weight:normal; color:#7D7F87;">, ' + escapeHtml(titleSuffix) + '</span>' : '')
-        + (mobile ? '<br><span style="font-family:Arial, Helvetica, sans-serif; color:#7D7F87;">' + escapeHtml(mobile) + '</span>' : '')
+        + '<span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; font-weight:bold; color:#7D7F87;">' + escapeHtml(fullName) + '</span>'
+        + (titleSuffix ? '<span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; font-weight:normal; color:#7D7F87;">, ' + escapeHtml(titleSuffix) + '</span>' : '')
+        + (mobile ? '<div style="height:20px; line-height:20px; font-size:1px;">&nbsp;</div><span style="font-family:Arial, Helvetica, sans-serif; color:#7D7F87;">' + escapeHtml(mobile) + '</span>' : '')
         + '</td>'
         + '</tr></table>';
     }
