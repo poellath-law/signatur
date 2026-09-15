@@ -85,6 +85,7 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
+      margin-bottom: 16px;
     }
 
     .field {
@@ -152,6 +153,11 @@
       justify-content: center;
     }
 
+    .actions button {
+      width: 250px;
+      min-height: 44px;
+    }
+
     button {
       appearance: none;
       border: 0;
@@ -214,6 +220,8 @@
     .fallback-section { display: block; }
     body.no-js .interactive-grid { display: none; }
     body.js .fallback-section { display: none; }
+    body.no-js .js-only { display: none; }
+    body.js .no-js-only { display: none; }
 
     .info-icon {
       display: inline-flex; align-items: center; justify-content: center;
@@ -273,7 +281,7 @@
         grid-template-columns: 1fr;
       }
 
-      button {
+      .actions button {
         width: 100%;
       }
     }
@@ -284,7 +292,7 @@
   <main class="page">
     <section class="hero" aria-labelledby="page-title">
       <h1 id="page-title">POELLATH E-Mail-Signaturvorlage</h1>
-      <p>Persönliche Daten eintragen, Standort und Sprache auswählen, Signatur markieren und in Outlook für Windows oder iOS einfügen.</p>
+      <p>Persönliche Daten eintragen, Standort und Sprache auswählen, <span class="js-only">Signatur markieren</span><span class="no-js-only">Signatur kopieren</span> und in Outlook für Windows oder iOS einfügen.</p>
     </section>
 
     <section class="fallback-section" aria-label="Statische Beispielsignaturen ohne JavaScript">
@@ -300,7 +308,7 @@
               <a href="https://www.pplaw.com/" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
               Bleiben Sie informiert: <a href="https://www.pplaw.com/anmeldung-zum-newsletter" style="color:#9C9EA6; text-decoration:underline;">Anmeldung zum Newsletter</a><br><br>
               POELLATH<br>
-              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Hofstatt 1<br>80331 München<br>T +49 89 24240 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Hofstatt 1<br>80331 München<br>T +49 89 24240 123<br>M +49 170 1234567<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">AlexMustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
             </div>
           </div>
         </section>
@@ -314,7 +322,7 @@
               <a href="https://www.pplaw.com/en" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
               Stay informed: <a href="https://www.pplaw.com/en/newsletter-registration" style="color:#9C9EA6; text-decoration:underline;">Sign up for our newsletter</a><br><br>
               POELLATH<br>
-              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Hofstatt 1<br>80331 Munich<br>T +49 89 24240 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/en" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Hofstatt 1<br>80331 Munich<br>T +49 89 24240 123<br>M +49 170 1234567<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">AlexMustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/en" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
             </div>
           </div>
         </section>
@@ -328,7 +336,7 @@
               <a href="https://www.pplaw.com/" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
               Bleiben Sie informiert: <a href="https://www.pplaw.com/anmeldung-zum-newsletter" style="color:#9C9EA6; text-decoration:underline;">Anmeldung zum Newsletter</a><br><br>
               POELLATH<br>
-              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>OpernTurm | Bockenheimer Landstraße 2-4<br>60306 Frankfurt aM<br>T +49 69 247047 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>OpernTurm | Bockenheimer Landstraße 2-4<br>60306 Frankfurt aM<br>T +49 69 247047 123<br>M +49 170 1234567<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">AlexMustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
             </div>
           </div>
         </section>
@@ -342,7 +350,7 @@
               <a href="https://www.pplaw.com/en" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
               Stay informed: <a href="https://www.pplaw.com/en/newsletter-registration" style="color:#9C9EA6; text-decoration:underline;">Sign up for our newsletter</a><br><br>
               POELLATH<br>
-              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>OpernTurm | Bockenheimer Landstraße 2-4<br>60306 Frankfurt aM<br>T +49 69 247047 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/en" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>OpernTurm | Bockenheimer Landstraße 2-4<br>60306 Frankfurt aM<br>T +49 69 247047 123<br>M +49 170 1234567<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">AlexMustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/en" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
             </div>
           </div>
         </section>
@@ -356,7 +364,7 @@
               <a href="https://www.pplaw.com/" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
               Bleiben Sie informiert: <a href="https://www.pplaw.com/anmeldung-zum-newsletter" style="color:#9C9EA6; text-decoration:underline;">Anmeldung zum Newsletter</a><br><br>
               POELLATH<br>
-              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Potsdamer Platz 5<br>10785 Berlin<br>T +49 30 25353 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Potsdamer Platz 5<br>10785 Berlin<br>T +49 30 25353 123<br>M +49 170 1234567<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">AlexMustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
             </div>
           </div>
         </section>
@@ -370,8 +378,44 @@
               <a href="https://www.pplaw.com/en" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
               Stay informed: <a href="https://www.pplaw.com/en/newsletter-registration" style="color:#9C9EA6; text-decoration:underline;">Sign up for our newsletter</a><br><br>
               POELLATH<br>
-              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Potsdamer Platz 5<br>10785 Berlin<br>T +49 30 25353 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/en" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Potsdamer Platz 5<br>10785 Berlin<br>T +49 30 25353 123<br>M +49 170 1234567<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">AlexMustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/en" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
             </div>
+          </div>
+        </section>
+        <section class="card noscript-signature-box">
+          <h2>Kurzsignatur · München</h2>
+          <div class="signature-wrap">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>
+              <td valign="top" style="padding:0 8px 0 0; vertical-align:top;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;"><tr><td height="2" style="height:2px; line-height:2px; font-size:1px;">&nbsp;</td></tr><tr><td style="padding:0; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; font-weight:normal; text-align:center;">+</td></tr></table></td>
+              <td valign="top" style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; line-height:16pt; font-weight:bold; color:#7D7F87;">Dr. Alex Mustermensch</span><span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; line-height:16pt; font-weight:normal; color:#7D7F87;">, LL.M.</span></td>
+            </tr><tr><td style="padding:0 8px 0 0;">&nbsp;</td><td style="padding:5px 0 0; font-family:Arial, Helvetica, sans-serif; line-height:20px; color:#7D7F87;">+49 89 24240 123</td></tr></table>
+          </div>
+        </section>
+        <section class="card noscript-signature-box">
+          <h2>Kurzsignatur · Frankfurt</h2>
+          <div class="signature-wrap">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>
+              <td valign="top" style="padding:0 8px 0 0; vertical-align:top;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;"><tr><td height="2" style="height:2px; line-height:2px; font-size:1px;">&nbsp;</td></tr><tr><td style="padding:0; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; font-weight:normal; text-align:center;">+</td></tr></table></td>
+              <td valign="top" style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; line-height:16pt; font-weight:bold; color:#7D7F87;">Dr. Alex Mustermensch</span><span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; line-height:16pt; font-weight:normal; color:#7D7F87;">, LL.M.</span></td>
+            </tr><tr><td style="padding:0 8px 0 0;">&nbsp;</td><td style="padding:5px 0 0; font-family:Arial, Helvetica, sans-serif; line-height:20px; color:#7D7F87;">+49 69 247047 123</td></tr></table>
+          </div>
+        </section>
+        <section class="card noscript-signature-box">
+          <h2>Kurzsignatur · Berlin</h2>
+          <div class="signature-wrap">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>
+              <td valign="top" style="padding:0 8px 0 0; vertical-align:top;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;"><tr><td height="2" style="height:2px; line-height:2px; font-size:1px;">&nbsp;</td></tr><tr><td style="padding:0; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; font-weight:normal; text-align:center;">+</td></tr></table></td>
+              <td valign="top" style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; line-height:16pt; font-weight:bold; color:#7D7F87;">Dr. Alex Mustermensch</span><span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; line-height:16pt; font-weight:normal; color:#7D7F87;">, LL.M.</span></td>
+            </tr><tr><td style="padding:0 8px 0 0;">&nbsp;</td><td style="padding:5px 0 0; font-family:Arial, Helvetica, sans-serif; line-height:20px; color:#7D7F87;">+49 30 25353 123</td></tr></table>
+          </div>
+        </section>
+        <section class="card noscript-signature-box">
+          <h2>Kurzsignatur · Mobilnummer</h2>
+          <div class="signature-wrap">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>
+              <td valign="top" style="padding:0 8px 0 0; vertical-align:top;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;"><tr><td height="2" style="height:2px; line-height:2px; font-size:1px;">&nbsp;</td></tr><tr><td style="padding:0; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; font-weight:normal; text-align:center;">+</td></tr></table></td>
+              <td valign="top" style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; line-height:16pt; font-weight:bold; color:#7D7F87;">Dr. Alex Mustermensch</span><span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; line-height:16pt; font-weight:normal; color:#7D7F87;">, LL.M.</span></td>
+            </tr><tr><td style="padding:0 8px 0 0;">&nbsp;</td><td style="padding:5px 0 0; font-family:Arial, Helvetica, sans-serif; line-height:20px; color:#7D7F87;">+49 170 1234567</td></tr></table>
           </div>
         </section>
       </section>
@@ -431,7 +475,7 @@
             <input id="email" name="email" type="email" value="@pplaw.com" placeholder="vorname.nachname@pplaw.com">
           </div>
           <div class="field full">
-            <label for="linkedin">Link zum LinkedIn-Profil (optional)</label>
+            <label for="linkedin">LinkedIn-Profil</label>
             <input id="linkedin" name="linkedin" type="text" placeholder="https://www.linkedin.com/in/benutzername">
           </div>
           <div class="field">
@@ -464,7 +508,7 @@
               <a href="https://www.pplaw.com/" style="text-decoration:none;"><img src="https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>
               Bleiben Sie informiert: <a href="https://www.pplaw.com/anmeldung-zum-newsletter" style="color:#9C9EA6; text-decoration:underline;">Anmeldung zum Newsletter</a><br><br>
               POELLATH<br>
-              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Hofstatt 1<br>80331 München<br>T +49 89 24240 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">a-mustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
+              <span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>Hofstatt 1<br>80331 München<br>T +49 89 24240 123<br><a href="mailto:alex.mustermensch@pplaw.com" style="color:#000000; text-decoration:underline;">alex.mustermensch@pplaw.com</a> | <a href="https://www.linkedin.com/in/a-mustermensch" style="color:#000000; text-decoration:underline;">AlexMustermensch@LinkedIn</a><br><a href="https://www.pplaw.com/" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="https://www.linkedin.com/company/poellath/" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span>
             </div>
           </div>
           </div>
@@ -526,20 +570,18 @@
     }
     function escapeAttribute(value) { return escapeHtml(value).replace(/`/g, '&#96;'); }
     function normalizeLinkedIn(value) {
-      if (!value || /^https?:\/\/www\.linkedin\.com\/?$/i.test(value)) return '';
-      const rootProfileMatch = value.match(/^https?:\/\/(?:www\.)?linkedin\.com\/([^/?#]+)\/?$/i);
-      if (rootProfileMatch && !/^(in|company|school|showcase)$/i.test(rootProfileMatch[1])) return 'https://www.linkedin.com/in/' + rootProfileMatch[1];
-      if (/^https?:\/\//i.test(value)) return value;
-      if (/^www\./i.test(value)) return 'https://' + value;
-      return value;
+      if (!value) return '';
+      if (/^https?:\/\/(?:www\.)?linkedin\.com(?:\/|$)/i.test(value)) return value;
+      if (/^(?:www\.)?linkedin\.com(?:\/|$)/i.test(value)) return 'https://' + value;
+      return 'https://www.linkedin.com/in/' + value.replace(/^@/, '');
     }
-    function getLinkedInUsername(value) {
-      if (!value || /^https?:\/\/www\.linkedin\.com\/?$/i.test(value)) return '';
-      const match = value.match(/linkedin\.com\/in\/([^/?#]+)/i);
-      if (match && match[1]) { try { return decodeURIComponent(match[1]); } catch (error) { return match[1]; } }
-      const rootProfileMatch = value.match(/^https?:\/\/(?:www\.)?linkedin\.com\/([^/?#]+)\/?$/i);
-      const fallback = rootProfileMatch && !/^(in|company|school|showcase)$/i.test(rootProfileMatch[1]) ? rootProfileMatch[1] : value.replace(/^https?:\/\//i, '').replace(/^www\./i, '').replace(/\/$/, '');
-      return fallback.toLowerCase() === 'name' ? '' : fallback;
+    function buildLinkedInLinkText(firstName, lastName) {
+      const firstNameToken = firstName.split(/\s+/).filter(Boolean)[0] || '';
+      const nameParts = [firstNameToken].concat(lastName.split(/\s+/).filter(Boolean));
+      const linkText = nameParts.map(function (part) {
+        return part.charAt(0).toUpperCase() + part.slice(1);
+      }).join('');
+      return (linkText || 'Name') + '@LinkedIn';
     }
     function normalizeEmailPart(value) {
       return value.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9-]+/g, '').replace(/^-+|-+$/g, '');
@@ -576,7 +618,7 @@
       const language = getValue('language'), location = locations[getValue('location')] || locations.munich;
       const fullName = [title, firstName, lastName].filter(Boolean).join(' ') + (titleSuffix ? ', ' + titleSuffix : '');
       const websiteHref = language === 'en' ? 'https://www.pplaw.com/en' : websiteUrl;
-      const linkedInUsername = getLinkedInUsername(linkedin);
+      const linkedInLinkText = buildLinkedInLinkText(firstName, lastName);
       const newsletterPretext = language === 'en' ? 'Stay informed: ' : 'Bleiben Sie informiert: ';
       const newsletterText = language === 'en' ? 'Sign up for our newsletter' : 'Anmeldung zum Newsletter';
       const newsletterHref = language === 'en' ? 'https://www.pplaw.com/en/newsletter-registration' : 'https://www.pplaw.com/anmeldung-zum-newsletter';
@@ -584,7 +626,7 @@
       const phoneLines = (extension ? 'T ' + escapeHtml(location.phonePrefix + ' ' + extension) + '<br>' : '')
         + (mobile ? 'M ' + escapeHtml(mobile) + '<br>' : '');
       const personalLinkedInHref = normalizeLinkedIn(linkedin);
-      const personalLinkedIn = personalLinkedInHref && linkedInUsername ? ' | <a href="' + escapeAttribute(personalLinkedInHref) + '" style="color:#000000; text-decoration:underline;">' + escapeHtml(firstName) + '@LinkedIn</a>' : '';
+      const personalLinkedIn = personalLinkedInHref ? ' | <a href="' + escapeAttribute(personalLinkedInHref) + '" style="color:#000000; text-decoration:underline;">' + escapeHtml(linkedInLinkText) + '</a>' : '';
       const emailHtml = email ? '<a href="mailto:' + escapeAttribute(email) + '" style="color:#000000; text-decoration:underline;">' + escapeHtml(email) + '</a>' : '';
       const jobTitle = jobTitleKey === 'freitext' ? getValue('jobTitleFreetext') : (jobTitles[jobTitleKey] ? jobTitles[jobTitleKey][language] : '');
       return '<div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">' + createLine(fullName) + createLine(jobTitle) + createLine(position) + '<br>'
