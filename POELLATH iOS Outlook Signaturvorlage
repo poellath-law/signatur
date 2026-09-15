@@ -122,6 +122,24 @@
       box-shadow: 0 0 0 4px var(--accent-soft);
     }
 
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+    }
+
+    .radio-option {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 400;
+    }
+
+    .radio-option input {
+      width: auto;
+      margin: 0;
+    }
+
     .actions {
       display: flex;
       flex-wrap: wrap;
@@ -393,10 +411,17 @@
             <input id="extension" name="extension" type="tel" inputmode="tel" placeholder="123">
           </div>
           <div class="field">
-            <label for="mobile">Handynummer *</label>
+            <label for="mobile">Handynummer</label>
             <input id="mobile" name="mobile" type="tel" inputmode="tel" placeholder="+49 171 1234567">
-            <span class="hint" style="margin:0;">* Wird für die Kurzsignatur verwendet.</span>
+            <span class="hint" style="margin:0;">Optional, für die Kurzsignatur.</span>
           </div>
+          <fieldset class="field full" style="margin:0; padding:0; border:0;">
+            <legend style="margin-bottom:6px; font-size:13px; font-weight:700;">Telefonnummer der Kurzsignatur</legend>
+            <div class="radio-group">
+              <label class="radio-option"><input type="radio" name="shortPhoneSource" value="extension"> Durchwahl</label>
+              <label class="radio-option"><input type="radio" name="shortPhoneSource" value="mobile" checked> Mobilnummer</label>
+            </div>
+          </fieldset>
           <div class="field">
             <label for="email">E-Mail-Adresse</label>
             <input id="email" name="email" type="email" value="@pplaw.com" placeholder="vorname.nachname@pplaw.com">
@@ -421,15 +446,11 @@
             </select>
           </div>
         </div>
-        <div class="actions">
-          <button class="primary" type="button" id="selectCopyButton">Signatur kopieren</button>
-        </div>
-        <div class="status" id="status" role="status" aria-live="polite"></div>
       </form>
 
       <div class="preview-column">
         <section class="card">
-          <h2>Fertige Signatur</h2>
+          <h2>Vollständige Signatur</h2>
           <div class="signature-wrap">
             <div id="signature">
             <div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">
@@ -443,6 +464,10 @@
             </div>
           </div>
           </div>
+          <div class="actions">
+            <button class="primary" type="button" id="selectCopyButton">Signatur kopieren</button>
+          </div>
+          <div class="status" id="signatureStatus" role="status" aria-live="polite"></div>
         </section>
 
         <section class="card">
@@ -453,6 +478,7 @@
           <div class="actions">
             <button class="secondary" type="button" id="selectCopyShortButton">Kurzsignatur kopieren</button>
           </div>
+          <div class="status" id="shortSignatureStatus" role="status" aria-live="polite"></div>
         </section>
       </div>
     </section>
@@ -481,7 +507,9 @@
     const form = document.getElementById('signatureForm');
     const signature = document.getElementById('signature');
     const shortSignature = document.getElementById('shortSignature');
-    const statusEl = document.getElementById('status');
+    const signatureStatus = document.getElementById('signatureStatus');
+    const shortSignatureStatus = document.getElementById('shortSignatureStatus');
+    const shortPhoneSourceInputs = document.querySelectorAll('input[name="shortPhoneSource"]');
     const emailInput = document.getElementById('email');
     let emailWasEdited = false;
     let lastSuggestedEmail = emailInput.value;
@@ -533,7 +561,10 @@
       lastSuggestedEmail = suggestedEmail;
     }
     function createLine(value) { return value ? escapeHtml(value) + '<br>' : ''; }
-    function setStatus(message, isWarning) { statusEl.textContent = message; statusEl.style.color = isWarning ? 'var(--warning)' : 'var(--success)'; }
+    function setStatus(statusElement, message, isWarning) {
+      statusElement.textContent = message;
+      statusElement.style.color = isWarning ? 'var(--warning)' : 'var(--success)';
+    }
     function buildSignatureHtml() {
       const title = getValue('title'), firstName = getValue('firstName'), lastName = getValue('lastName'), titleSuffix = getValue('titleSuffix');
       const jobTitleKey = getValue('jobTitle'), position = getValue('position'), extension = getValue('extension'), email = getValue('email'), linkedin = getValue('linkedin');
@@ -560,50 +591,58 @@
       const firstName = getValue('firstName');
       const lastName = getValue('lastName');
       const titleSuffix = getValue('titleSuffix');
-      const mobile = normalizeMobileNumber(getValue('mobile'));
+      const location = locations[getValue('location')] || locations.munich;
+      const extension = getValue('extension');
+      const shortPhoneSource = document.querySelector('input[name="shortPhoneSource"]:checked').value;
+      const phone = shortPhoneSource === 'extension'
+        ? location.phonePrefix + (extension ? ' ' + extension : '')
+        : normalizeMobileNumber(getValue('mobile'));
       const fullName = [title, firstName, lastName].filter(Boolean).join(' ');
       return '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>'
-        + '<td style="padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; font-weight:normal; text-align:center;">+</td>'
+        + '<td height="18" style="height:18px; padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; text-align:center;"><span style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal;">+</span></td>'
         + '<td style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif;">'
         + '<span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; font-weight:bold; color:#7D7F87;">' + escapeHtml(fullName) + '</span>'
         + (titleSuffix ? '<span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; font-weight:normal; color:#7D7F87;">, ' + escapeHtml(titleSuffix) + '</span>' : '')
-        + (mobile ? '<div style="height:5px; line-height:5px; font-size:1px;">&nbsp;</div><span style="font-family:Arial, Helvetica, sans-serif; color:#7D7F87;">' + escapeHtml(mobile) + '</span>' : '')
+        + (phone ? '<div style="height:13px; line-height:13px; font-size:1px;">&nbsp;</div><span style="font-family:Arial, Helvetica, sans-serif; line-height:20px; color:#7D7F87;">' + escapeHtml(phone) + '</span>' : '')
         + '</td>'
         + '</tr></table>';
     }
     function updateSignature(showMessage) {
       signature.innerHTML = buildSignatureHtml();
       shortSignature.innerHTML = buildShortSignatureHtml();
-      if (showMessage) setStatus('Signaturen wurden aktualisiert.', false);
+      if (showMessage) setStatus(signatureStatus, 'Signaturen wurden aktualisiert.', false);
     }
     function buildClipboardDocument(element) {
       return '<!doctype html><html><head><meta charset="utf-8"><style>body,table,td,span{font-family:Arial,Helvetica,sans-serif!important;}</style></head><body style="margin:0; font-family:Arial, Helvetica, sans-serif;">'
         + element.innerHTML
         + '</body></html>';
     }
-    async function selectAndCopy(element, successMessage) {
+    async function selectAndCopy(element, statusElement, successMessage) {
       const range = document.createRange(); range.selectNodeContents(element);
       const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range);
       const html = buildClipboardDocument(element), text = element.innerText;
       try {
         if (navigator.clipboard && window.ClipboardItem) {
           const item = new ClipboardItem({ 'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([text], { type: 'text/plain' }) });
-          await navigator.clipboard.write([item]); setStatus(successMessage, false); return;
+          await navigator.clipboard.write([item]); setStatus(statusElement, successMessage, false); return;
         }
-      } catch (error) { setStatus('Signatur wurde markiert. Direktes Kopieren nicht unterstützt – bitte manuell "Kopieren" wählen.', true); return; }
-      setStatus('Signatur wurde markiert. Direktes Kopieren nicht unterstützt – bitte manuell "Kopieren" wählen.', true);
+      } catch (error) { setStatus(statusElement, 'Signatur wurde markiert. Direktes Kopieren nicht unterstützt – bitte manuell "Kopieren" wählen.', true); return; }
+      setStatus(statusElement, 'Signatur wurde markiert. Direktes Kopieren nicht unterstützt – bitte manuell "Kopieren" wählen.', true);
     }
     function selectAndCopySignature() {
       updateSignature(false);
-      return selectAndCopy(signature, 'Signatur wurde in die Zwischenablage kopiert.');
+      return selectAndCopy(signature, signatureStatus, 'Signatur wurde in die Zwischenablage kopiert.');
     }
     function selectAndCopyShortSignature() {
       updateSignature(false);
-      return selectAndCopy(shortSignature, 'Kurzsignatur wurde in die Zwischenablage kopiert.');
+      return selectAndCopy(shortSignature, shortSignatureStatus, 'Kurzsignatur wurde in die Zwischenablage kopiert.');
     }
     fields.forEach(function (id) {
       document.getElementById(id).addEventListener('input', function () { if (id === 'email') emailWasEdited = true; if (id === 'firstName' || id === 'lastName') suggestEmailAddress(); updateSignature(false); });
       document.getElementById(id).addEventListener('change', function () { if (id === 'firstName' || id === 'lastName') suggestEmailAddress(); updateSignature(false); });
+    });
+    shortPhoneSourceInputs.forEach(function (input) {
+      input.addEventListener('change', function () { updateSignature(false); });
     });
     function toggleJobTitleFreetext() { jobTitleFreetextField.style.display = jobTitleSelect.value === 'freitext' ? 'block' : 'none'; }
     jobTitleSelect.addEventListener('change', toggleJobTitleFreetext); toggleJobTitleFreetext();
