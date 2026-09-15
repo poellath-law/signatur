@@ -599,7 +599,7 @@
         : normalizeMobileNumber(getValue('mobile'));
       const fullName = [title, firstName, lastName].filter(Boolean).join(' ');
       return '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>'
-        + '<td height="18" style="height:18px; padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; text-align:center;"><span style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal;">+</span></td>'
+        + '<td height="19" style="height:19px; padding:1px 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; text-align:center;"><span style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:17pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal;">+</span></td>'
         + '<td style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif;">'
         + '<span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; font-weight:bold; color:#7D7F87;">' + escapeHtml(fullName) + '</span>'
         + (titleSuffix ? '<span style="font-family:Arial, Helvetica, sans-serif; font-size:13pt; font-weight:normal; color:#7D7F87;">, ' + escapeHtml(titleSuffix) + '</span>' : '')
@@ -617,6 +617,9 @@
         + element.innerHTML
         + '</body></html>';
     }
+    function clearStatus(statusElement) {
+      statusElement.textContent = '';
+    }
     async function selectAndCopy(element, statusElement, successMessage) {
       const range = document.createRange(); range.selectNodeContents(element);
       const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range);
@@ -630,10 +633,12 @@
       setStatus(statusElement, 'Signatur wurde markiert. Direktes Kopieren nicht unterstützt – bitte manuell "Kopieren" wählen.', true);
     }
     function selectAndCopySignature() {
+      clearStatus(shortSignatureStatus);
       updateSignature(false);
       return selectAndCopy(signature, signatureStatus, 'Signatur wurde in die Zwischenablage kopiert.');
     }
     function selectAndCopyShortSignature() {
+      clearStatus(signatureStatus);
       updateSignature(false);
       return selectAndCopy(shortSignature, shortSignatureStatus, 'Kurzsignatur wurde in die Zwischenablage kopiert.');
     }
