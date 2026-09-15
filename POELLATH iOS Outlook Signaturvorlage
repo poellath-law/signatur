@@ -519,7 +519,7 @@
       if (!digits) return '';
       const areaCode = digits.slice(0, 3);
       const subscriberNumber = digits.slice(3);
-      return 'T +49 ' + areaCode + (subscriberNumber ? ' ' + subscriberNumber : '');
+      return '+49 ' + areaCode + (subscriberNumber ? ' ' + subscriberNumber : '');
     }
     function suggestEmailAddress() {
       if (emailWasEdited && emailInput.value !== lastSuggestedEmail && emailInput.value !== '@pplaw.com') return;
@@ -560,12 +560,13 @@
       const lastName = getValue('lastName');
       const titleSuffix = getValue('titleSuffix');
       const mobile = normalizeMobileNumber(getValue('mobile'));
-      const fullName = [title, firstName, lastName].filter(Boolean).join(' ') + (titleSuffix ? ', ' + titleSuffix : '');
+      const fullName = [title, firstName, lastName].filter(Boolean).join(' ');
       return '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>'
-        + '<td style="padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:12pt; font-weight:bold;">+</td>'
+        + '<td style="padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:16pt; line-height:15pt; font-weight:normal; text-align:center;">+</td>'
         + '<td style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif;">'
         + '<span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; font-weight:bold; color:#7D7F87;">' + escapeHtml(fullName) + '</span>'
-        + (mobile ? '<hr style="width:50px; height:2px; margin:5px 0; padding:0; border:0; background-color:#4DB4F2; color:#4DB4F2; text-align:left;"><span style="font-family:Arial, Helvetica, sans-serif; color:#7D7F87;">' + escapeHtml(mobile) + '</span>' : '')
+        + (titleSuffix ? '<span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; font-weight:normal; color:#7D7F87;">, ' + escapeHtml(titleSuffix) + '</span>' : '')
+        + (mobile ? '<br><span style="font-family:Arial, Helvetica, sans-serif; color:#7D7F87;">' + escapeHtml(mobile) + '</span>' : '')
         + '</td>'
         + '</tr></table>';
     }
