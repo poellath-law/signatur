@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="application-version" content="2.1.2">
   <title>POELLATH E-Mail-Signaturvorlage</title>
   <style>
     :root {
@@ -386,36 +387,36 @@
           <h2>Kurzsignatur · München</h2>
           <div class="signature-wrap">
             <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>
-              <td valign="top" style="padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:16pt; line-height:16pt; font-weight:normal; text-align:center;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:16pt; line-height:16pt; mso-line-height-rule:exactly; mso-text-raise:-2px; font-weight:normal; color:#4DB4F2;">+</span></td>
-              <td valign="top" style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; line-height:16pt; font-weight:bold; color:#7D7F87;">Dr. Alex Mustermensch</span><span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; line-height:16pt; font-weight:normal; color:#7D7F87;">, LL.M.</span></td>
-            </tr><tr><td style="padding:0 8px 0 0;">&nbsp;</td><td style="padding:2px 0 0; font-family:Arial, Helvetica, sans-serif; line-height:20px; color:#7D7F87;">+49 89 24240 123</td></tr></table>
+              <!--[if mso]><td valign="top" style="padding:1.5px 6px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; text-align:center;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; mso-line-height-rule:exactly; mso-text-raise:-2px; font-weight:normal; color:#4DB4F2;">&#43;</span></td><![endif]--><!--[if !mso]><!--><td valign="middle" style="padding:0 8px 0 0; vertical-align:middle; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; font-weight:normal; text-align:center;">&#43;</td><!--<![endif]-->
+              <!--[if mso]><td valign="top" style="padding:1px 0 0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><![endif]--><!--[if !mso]><!--><td valign="baseline" style="padding:0; vertical-align:baseline; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><!--<![endif]--><span style="font-family:Arial, Helvetica, sans-serif; font-size:10pt; line-height:16pt; font-weight:bold; color:#7D7F87;">Dr. Alex Mustermensch</span><span style="font-family:Arial, Helvetica, sans-serif; font-size:10pt; line-height:16pt; font-weight:normal; color:#7D7F87;">, LL.M.</span></td>
+            </tr><tr><td style="padding:0 6px 0 0;">&nbsp;</td><td style="padding:2px 0 0; font-family:Arial, Helvetica, sans-serif; font-size:8pt; line-height:12pt; color:#7D7F87;">+49 89 24240 123</td></tr></table>
           </div>
         </section>
         <section class="card noscript-signature-box">
           <h2>Kurzsignatur · Frankfurt</h2>
           <div class="signature-wrap">
             <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>
-              <td valign="top" style="padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:16pt; line-height:16pt; font-weight:normal; text-align:center;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:16pt; line-height:16pt; mso-line-height-rule:exactly; mso-text-raise:-2px; font-weight:normal; color:#4DB4F2;">+</span></td>
-              <td valign="top" style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; line-height:16pt; font-weight:bold; color:#7D7F87;">Dr. Alex Mustermensch</span><span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; line-height:16pt; font-weight:normal; color:#7D7F87;">, LL.M.</span></td>
-            </tr><tr><td style="padding:0 8px 0 0;">&nbsp;</td><td style="padding:2px 0 0; font-family:Arial, Helvetica, sans-serif; line-height:20px; color:#7D7F87;">+49 69 247047 123</td></tr></table>
+              <!--[if mso]><td valign="top" style="padding:1.5px 6px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; text-align:center;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; mso-line-height-rule:exactly; mso-text-raise:-2px; font-weight:normal; color:#4DB4F2;">&#43;</span></td><![endif]--><!--[if !mso]><!--><td valign="middle" style="padding:0 8px 0 0; vertical-align:middle; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; font-weight:normal; text-align:center;">&#43;</td><!--<![endif]-->
+              <!--[if mso]><td valign="top" style="padding:1px 0 0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><![endif]--><!--[if !mso]><!--><td valign="baseline" style="padding:0; vertical-align:baseline; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><!--<![endif]--><span style="font-family:Arial, Helvetica, sans-serif; font-size:10pt; line-height:16pt; font-weight:bold; color:#7D7F87;">Dr. Alex Mustermensch</span><span style="font-family:Arial, Helvetica, sans-serif; font-size:10pt; line-height:16pt; font-weight:normal; color:#7D7F87;">, LL.M.</span></td>
+            </tr><tr><td style="padding:0 6px 0 0;">&nbsp;</td><td style="padding:2px 0 0; font-family:Arial, Helvetica, sans-serif; font-size:8pt; line-height:12pt; color:#7D7F87;">+49 69 247047 123</td></tr></table>
           </div>
         </section>
         <section class="card noscript-signature-box">
           <h2>Kurzsignatur · Berlin</h2>
           <div class="signature-wrap">
             <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>
-              <td valign="top" style="padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:16pt; line-height:16pt; font-weight:normal; text-align:center;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:16pt; line-height:16pt; mso-line-height-rule:exactly; mso-text-raise:-2px; font-weight:normal; color:#4DB4F2;">+</span></td>
-              <td valign="top" style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; line-height:16pt; font-weight:bold; color:#7D7F87;">Dr. Alex Mustermensch</span><span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; line-height:16pt; font-weight:normal; color:#7D7F87;">, LL.M.</span></td>
-            </tr><tr><td style="padding:0 8px 0 0;">&nbsp;</td><td style="padding:2px 0 0; font-family:Arial, Helvetica, sans-serif; line-height:20px; color:#7D7F87;">+49 30 25353 123</td></tr></table>
+              <!--[if mso]><td valign="top" style="padding:1.5px 6px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; text-align:center;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; mso-line-height-rule:exactly; mso-text-raise:-2px; font-weight:normal; color:#4DB4F2;">&#43;</span></td><![endif]--><!--[if !mso]><!--><td valign="middle" style="padding:0 8px 0 0; vertical-align:middle; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; font-weight:normal; text-align:center;">&#43;</td><!--<![endif]-->
+              <!--[if mso]><td valign="top" style="padding:1px 0 0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><![endif]--><!--[if !mso]><!--><td valign="baseline" style="padding:0; vertical-align:baseline; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><!--<![endif]--><span style="font-family:Arial, Helvetica, sans-serif; font-size:10pt; line-height:16pt; font-weight:bold; color:#7D7F87;">Dr. Alex Mustermensch</span><span style="font-family:Arial, Helvetica, sans-serif; font-size:10pt; line-height:16pt; font-weight:normal; color:#7D7F87;">, LL.M.</span></td>
+            </tr><tr><td style="padding:0 6px 0 0;">&nbsp;</td><td style="padding:2px 0 0; font-family:Arial, Helvetica, sans-serif; font-size:8pt; line-height:12pt; color:#7D7F87;">+49 30 25353 123</td></tr></table>
           </div>
         </section>
         <section class="card noscript-signature-box">
           <h2>Kurzsignatur · Mobilnummer</h2>
           <div class="signature-wrap">
             <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>
-              <td valign="top" style="padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:16pt; line-height:16pt; font-weight:normal; text-align:center;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:16pt; line-height:16pt; mso-line-height-rule:exactly; mso-text-raise:-2px; font-weight:normal; color:#4DB4F2;">+</span></td>
-              <td valign="top" style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; line-height:16pt; font-weight:bold; color:#7D7F87;">Dr. Alex Mustermensch</span><span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; line-height:16pt; font-weight:normal; color:#7D7F87;">, LL.M.</span></td>
-            </tr><tr><td style="padding:0 8px 0 0;">&nbsp;</td><td style="padding:2px 0 0; font-family:Arial, Helvetica, sans-serif; line-height:20px; color:#7D7F87;">+49 170 1234567</td></tr></table>
+              <!--[if mso]><td valign="top" style="padding:1.5px 6px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; text-align:center;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; mso-line-height-rule:exactly; mso-text-raise:-2px; font-weight:normal; color:#4DB4F2;">&#43;</span></td><![endif]--><!--[if !mso]><!--><td valign="middle" style="padding:0 8px 0 0; vertical-align:middle; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; font-weight:normal; text-align:center;">&#43;</td><!--<![endif]-->
+              <!--[if mso]><td valign="top" style="padding:1px 0 0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><![endif]--><!--[if !mso]><!--><td valign="baseline" style="padding:0; vertical-align:baseline; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><!--<![endif]--><span style="font-family:Arial, Helvetica, sans-serif; font-size:10pt; line-height:16pt; font-weight:bold; color:#7D7F87;">Dr. Alex Mustermensch</span><span style="font-family:Arial, Helvetica, sans-serif; font-size:10pt; line-height:16pt; font-weight:normal; color:#7D7F87;">, LL.M.</span></td>
+            </tr><tr><td style="padding:0 6px 0 0;">&nbsp;</td><td style="padding:2px 0 0; font-family:Arial, Helvetica, sans-serif; font-size:8pt; line-height:12pt; color:#7D7F87;">+49 170 1234567</td></tr></table>
           </div>
         </section>
       </section>
@@ -461,7 +462,6 @@
           <div class="field">
             <label for="mobile">Mobilnummer</label>
             <input id="mobile" name="mobile" type="tel" inputmode="tel" placeholder="+49 171 1234567">
-            <span class="hint" style="margin:0;">Optional, für die Kurzsignatur.</span>
           </div>
           <fieldset class="field full short-phone-choice" style="padding:0; border:0;">
             <legend style="margin-bottom:6px; font-size:13px; font-weight:700;">Telefonnummer der Kurzsignatur</legend>
@@ -523,6 +523,7 @@
           <div class="signature-wrap">
             <div id="shortSignature"></div>
           </div>
+          <p class="hint">Hinweis: Das Plus ist in der Vorschau leicht versetzt. In Outlook wird die Signatur korrekt dargestellt.</p>
           <div class="actions">
             <button class="primary" type="button" id="selectCopyShortButton">Kurzsignatur kopieren</button>
           </div>
@@ -533,6 +534,8 @@
   </main>
 
   <script>
+    const fullSignatureVersion = '2.0.0';
+    const shortSignatureVersion = '2.1.2';
     const logoUrl = 'https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png';
     const websiteUrl = 'https://www.pplaw.com/';
     const companyLinkedInUrl = 'https://www.linkedin.com/company/poellath/';
@@ -629,7 +632,7 @@
       const personalLinkedIn = personalLinkedInHref ? ' | <a href="' + escapeAttribute(personalLinkedInHref) + '" style="color:#000000; text-decoration:underline;">' + escapeHtml(linkedInLinkText) + '</a>' : '';
       const emailHtml = email ? '<a href="mailto:' + escapeAttribute(email) + '" style="color:#000000; text-decoration:underline;">' + escapeHtml(email) + '</a>' : '';
       const jobTitle = jobTitleKey === 'freitext' ? getValue('jobTitleFreetext') : (jobTitles[jobTitleKey] ? jobTitles[jobTitleKey][language] : '');
-      return '<div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">' + createLine(fullName) + createLine(jobTitle) + createLine(position) + '<br>'
+      return '<!-- POELLATH full signature v' + fullSignatureVersion + ' --><div style="font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;">' + createLine(fullName) + createLine(jobTitle) + createLine(position) + '<br>'
         + '<a href="' + websiteHref + '" style="text-decoration:none;"><img src="' + logoUrl + '" width="200" alt="POELLATH" style="border:0; width:200px; height:auto; display:block;"></a><br><span style="font-size:10pt; line-height:10pt;">&nbsp;</span><br>'
         + escapeHtml(newsletterPretext) + '<a href="' + newsletterHref + '" style="color:#9C9EA6; text-decoration:underline;">' + escapeHtml(newsletterText) + '</a><br><br>POELLATH<br><span style="font-size:8pt; line-height:1.25;">P+P Pöllath + Partners<br>Rechtsanwälte und Steuerberater mbB<br>'
         + escapeHtml(addressLines[0]) + '<br>' + escapeHtml(addressLines[1]) + '<br>' + phoneLines + emailHtml + personalLinkedIn + '<br><a href="' + websiteHref + '" style="color:#000000; text-decoration:underline;">www.pplaw.com</a> | <a href="' + companyLinkedInUrl + '" style="color:#000000; text-decoration:underline;">POELLATH@LinkedIn</a></span></div>';
@@ -647,13 +650,13 @@
         ? location.phonePrefix + (extension ? ' ' + extension : '')
         : normalizeMobileNumber(getValue('mobile'));
       const fullName = [title, firstName, lastName].filter(Boolean).join(' ');
-      return '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>'
-        + '<td valign="top" style="padding:0 8px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:16pt; line-height:16pt; font-weight:normal; text-align:center;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:16pt; line-height:16pt; mso-line-height-rule:exactly; mso-text-raise:-2px; font-weight:normal; color:#4DB4F2;">+</span></td>'
-        + '<td valign="top" style="padding:0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt; mso-line-height-rule:exactly;">'
-        + '<span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:bold; color:#7D7F87;">' + escapeHtml(fullName) + '</span>'
-        + (titleSuffix ? '<span style="font-family:Arial, Helvetica, sans-serif; font-size:12pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; color:#7D7F87;">, ' + escapeHtml(titleSuffix) + '</span>' : '')
+      return '<!-- POELLATH short signature v' + shortSignatureVersion + ' --><table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#000000; font-size:10pt; line-height:1.25;"><tr>'
+        + '<!--[if mso]><td valign="top" style="padding:1.5px 6px 0 0; vertical-align:top; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; text-align:center;"><span style="font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; mso-line-height-rule:exactly; mso-text-raise:-2px; font-weight:normal; color:#4DB4F2;">&#43;</span></td><![endif]--><!--[if !mso]><!--><td valign="middle" style="padding:0 8px 0 0; vertical-align:middle; color:#4DB4F2; font-family:Arial, Helvetica, sans-serif; font-size:15pt; line-height:16pt; font-weight:normal; text-align:center;">&#43;</td><!--<![endif]-->'
+        + '<!--[if mso]><td valign="top" style="padding:1px 0 0; vertical-align:top; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt; mso-line-height-rule:exactly;"><![endif]--><!--[if !mso]><!--><td valign="baseline" style="padding:0; vertical-align:baseline; color:#7D7F87; font-family:Arial, Helvetica, sans-serif; line-height:16pt;"><!--<![endif]-->'
+        + '<span style="font-family:Arial, Helvetica, sans-serif; font-size:10pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:bold; color:#7D7F87;">' + escapeHtml(fullName) + '</span>'
+        + (titleSuffix ? '<span style="font-family:Arial, Helvetica, sans-serif; font-size:10pt; line-height:16pt; mso-line-height-rule:exactly; font-weight:normal; color:#7D7F87;">, ' + escapeHtml(titleSuffix) + '</span>' : '')
         + '</td></tr>'
-        + (phone ? '<tr><td style="padding:0 8px 0 0;">&nbsp;</td><td style="padding:2px 0 0; font-family:Arial, Helvetica, sans-serif; line-height:20px; color:#7D7F87;">' + escapeHtml(phone) + '</td></tr>' : '')
+        + (phone ? '<tr><td style="padding:0 6px 0 0;">&nbsp;</td><td style="padding:2px 0 0; font-family:Arial, Helvetica, sans-serif; font-size:8pt; line-height:12pt; color:#7D7F87;">' + escapeHtml(phone) + '</td></tr>' : '')
         + '</table>';
     }
     function updateSignature(showMessage) {
