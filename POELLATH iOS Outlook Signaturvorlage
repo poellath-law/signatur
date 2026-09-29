@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="application-version" content="2.1.8">
-  <title>POELLATH E-Mail-Signaturvorlage</title>
+  <title>POELLATH E-Mail-Signaturvorlagen</title>
   <style>
     :root {
       color-scheme: light;
@@ -281,7 +281,7 @@
   <script>document.body.className = document.body.className.replace(/\bno-js\b/, 'js');</script>
   <main class="page">
     <section class="hero" aria-labelledby="page-title">
-      <h1 id="page-title">POELLATH E-Mail-Signaturvorlage</h1>
+      <h1 id="page-title">POELLATH E-Mail-Signaturvorlagen</h1>
       <p>Persönliche Daten eintragen, Standort und Sprache auswählen, <span class="js-only">Signatur kopieren</span><span class="no-js-only">Signatur markieren</span> und in Outlook für Windows oder iOS einfügen.</p>
     </section>
 
@@ -512,6 +512,7 @@
           <div class="signature-wrap">
             <div id="shortSignature"></div>
           </div>
+          <p class="hint">Hinweis: Das Plus ist in der Vorschau leicht versetzt. In Outlook wird die Signatur korrekt dargestellt.</p>
           <div class="actions">
             <button class="primary" type="button" id="selectCopyShortButton">Kurzsignatur kopieren</button>
           </div>
