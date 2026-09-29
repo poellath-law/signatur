@@ -523,6 +523,7 @@
           <div class="signature-wrap">
             <div id="shortSignature"></div>
           </div>
+          <p class="hint">Hinweis: Das Plus ist in der Vorschau leicht versetzt. In Outlook wird die Signatur korrekt dargestellt.</p>
           <div class="actions">
             <button class="primary" type="button" id="selectCopyShortButton">Kurzsignatur kopieren</button>
           </div>
