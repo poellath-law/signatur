@@ -449,7 +449,11 @@
             <input id="extension" name="extension" type="tel" inputmode="tel" placeholder="123">
           </div>
           <div class="field">
+<<<<<<< HEAD
+            <label for="mobile">Mobilnummer *</label>
+=======
             <label for="mobile">Mobilnummer</label>
+>>>>>>> 638db0dba88c08d6acdcb85bb73b66a66d170c93
             <input id="mobile" name="mobile" type="tel" inputmode="tel" placeholder="+49 171 1234567">
           </div>
           <fieldset class="field full short-phone-choice" style="padding:0; border:0;">
@@ -512,7 +516,6 @@
           <div class="signature-wrap">
             <div id="shortSignature"></div>
           </div>
-          <p class="hint">Hinweis: Das Plus ist in der Vorschau leicht versetzt. In Outlook wird die Signatur korrekt dargestellt.</p>
           <div class="actions">
             <button class="primary" type="button" id="selectCopyShortButton">Kurzsignatur kopieren</button>
           </div>
