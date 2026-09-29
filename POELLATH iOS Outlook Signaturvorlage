@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="application-version" content="2.1.7">
-  <title>POELLATH E-Mail-Signaturvorlage</title>
+  <meta name="application-version" content="2.1.8">
+  <title>POELLATH E-Mail-Signaturvorlagen</title>
   <style>
     :root {
       color-scheme: light;
@@ -180,23 +180,12 @@
       padding: 12px 64px;
     }
 
-    .secondary {
-      color: var(--brand);
-      background: var(--accent-soft);
-    }
-
     .status {
       min-height: 24px;
       margin-top: 12px;
       color: var(--success);
       font-size: 14px;
       font-weight: 700;
-    }
-
-    .hint {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 13px;
     }
 
     .no-script {
@@ -292,7 +281,7 @@
   <script>document.body.className = document.body.className.replace(/\bno-js\b/, 'js');</script>
   <main class="page">
     <section class="hero" aria-labelledby="page-title">
-      <h1 id="page-title">POELLATH E-Mail-Signaturvorlage</h1>
+      <h1 id="page-title">POELLATH E-Mail-Signaturvorlagen</h1>
       <p>Persönliche Daten eintragen, Standort und Sprache auswählen, <span class="js-only">Signatur kopieren</span><span class="no-js-only">Signatur markieren</span> und in Outlook für Windows oder iOS einfügen.</p>
     </section>
 
@@ -535,14 +524,14 @@
 
   <script>
     const fullSignatureVersion = '2.0.0';
-    const shortSignatureVersion = '2.1.7';
+    const shortSignatureVersion = '2.1.8';
     const logoUrl = 'https://www.pplaw.com/sites/default/files/2026-07/POELLATH%20Logo%20hochaufl%C3%B6send%20positiv%20f%C3%BCr%20Onlinemedien%20(png).png';
     const websiteUrl = 'https://www.pplaw.com/';
     const companyLinkedInUrl = 'https://www.linkedin.com/company/poellath/';
     const locations = {
-      munich: { deName: 'München', enName: 'Munich', address: ['Hofstatt 1', '80331 München'], phonePrefix: '+49 89 24240' },
-      frankfurt: { deName: 'Frankfurt', enName: 'Frankfurt', address: ['OpernTurm | Bockenheimer Landstraße 2-4', '60306 Frankfurt aM'], phonePrefix: '+49 69 247047' },
-      berlin: { deName: 'Berlin', enName: 'Berlin', address: ['Potsdamer Platz 5', '10785 Berlin'], phonePrefix: '+49 30 25353' }
+      munich: { address: ['Hofstatt 1', '80331 München'], phonePrefix: '+49 89 24240' },
+      frankfurt: { address: ['OpernTurm | Bockenheimer Landstraße 2-4', '60306 Frankfurt aM'], phonePrefix: '+49 69 247047' },
+      berlin: { address: ['Potsdamer Platz 5', '10785 Berlin'], phonePrefix: '+49 30 25353' }
     };
     const jobTitles = {
       ra: { de: 'Rechtsanwalt', en: 'Attorney-at-Law' },
